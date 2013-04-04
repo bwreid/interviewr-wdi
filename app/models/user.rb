@@ -20,8 +20,18 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :address, :balance, :email, :first, :image, :is_admin, :last, :lat, :lon, :occupation, :password, :password_digest, :phone
+  attr_accessible :address, :balance, :email, :first, :image, :is_house, :last, :lat, :lon, :occupation, :password, :password_digest, :phone
   has_secure_password
   has_many :runs
   has_many :responses
+
+  before_save :get_location
+  private
+  def get_location
+    results = Geocoder.search(self.address).first
+    if results.present?
+      self.lat = results.latitude
+      self.lon = results.longitude
+    end
+  end
 end
