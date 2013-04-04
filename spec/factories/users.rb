@@ -5,6 +5,7 @@ FactoryGirl.define do
     first "MyString"
     last "MyString"
     email "MyString"
+    is_house false
     address "MyString"
     phone "MyString"
     occupation "MyString"

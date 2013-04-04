@@ -11,5 +11,12 @@
 require 'spec_helper'
 
 describe Tag do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe ".create" do
+    it "should have an id and name" do
+      exam = FactoryGirl.create(:exam)
+      tag = FactoryGirl.create(:tag)
+      exam.tags << tag
+      expect(tag.exams.first).to eq exam
+    end
+  end
 end
