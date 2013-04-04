@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :authentication
 
   private
-  # def authentication
+  def authentication
   #   @auth = User.find( session[:user_id] ) if session[:user_id]
   # end
 
@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
 
   # def is_admin
   #   redirect_to(root_path) unless User.find(session[:user_id]).is_admin
-  # end
+  end
 end
 

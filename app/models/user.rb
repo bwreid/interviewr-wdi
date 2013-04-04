@@ -20,7 +20,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :address, :balance, :email, :first, :image, :is_house, :last, :lat, :lon, :occupation, :password, :password_digest, :phone
+  attr_accessible :address, :balance, :email, :first, :image, :is_house, :last, :lat, :lon, :occupation, :password, :password_confirmation, :phone
   has_secure_password
   has_many :runs
 
