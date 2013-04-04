@@ -14,5 +14,6 @@
 class Exam < ActiveRecord::Base
   attr_accessible :creator_id, :fee, :name, :pass_rate
   has_many :runs
+  has_and_belongs_to_many :tags
   has_many :questions
 end
