@@ -88,9 +88,9 @@ GEM
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
     ffi (1.6.0)
-    fog (1.10.0)
+    fog (1.10.1)
       builder
-      excon (~> 0.14)
+      excon (~> 0.20)
       formatador (~> 0.2.0)
       mime-types
       multi_json (~> 1.0)
