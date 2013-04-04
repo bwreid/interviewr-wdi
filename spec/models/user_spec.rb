@@ -27,7 +27,16 @@ describe User do
       run = FactoryGirl.create(:run)
       user = FactoryGirl.create(:user)
       user.runs << run
-      expect(user.runs.first).to be run
+      expect(user.runs.first).to eq run
+    end
+  end
+
+  describe '.responses' do
+    it 'should show a list of user responses' do
+      response = FactoryGirl.create(:response)
+      user = FactoryGirl.create(:user)
+      user.responses << response
+      expect(user.responses.first).to eq response
     end
   end
 end
