@@ -10,7 +10,7 @@
 #  address         :string(255)
 #  phone           :string(255)
 #  occupation      :string(255)
-#  balance         :decimal(, )
+#  balance         :decimal(, )      default(0.0)
 #  image           :string(255)
 #  password_digest :string(255)
 #  lat             :float

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404160456) do
+ActiveRecord::Schema.define(:version => 20130404172217) do
 
   create_table "choices", :force => true do |t|
     t.string   "text"
@@ -74,13 +74,13 @@ ActiveRecord::Schema.define(:version => 20130404160456) do
     t.string   "address"
     t.string   "phone"
     t.string   "occupation"
-    t.decimal  "balance"
+    t.decimal  "balance",         :default => 0.0
     t.string   "image"
     t.string   "password_digest"
     t.float    "lat"
     t.float    "lon"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
 end
