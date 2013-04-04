@@ -14,5 +14,10 @@
 require 'spec_helper'
 
 describe Response do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '.create' do
+    it 'creates a new Response item' do
+      response = Response.create
+      expect(response.id).to_not be nil
+    end
+  end
 end
