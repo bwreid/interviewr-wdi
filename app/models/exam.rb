@@ -16,5 +16,4 @@ class Exam < ActiveRecord::Base
   has_many :runs
   has_and_belongs_to_many :tags
   has_many :questions
-
 end
