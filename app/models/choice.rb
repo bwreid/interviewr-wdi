@@ -12,6 +12,6 @@
 
 class Choice < ActiveRecord::Base
   attr_accessible :correct, :question_id, :text
-  has_one :response
+  has_many :responses
   belongs_to :question
 end

@@ -1,9 +1,21 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :choice do
-    text "MyString"
+  factory :choice_a, class: Choice do
+    text "a"
     correct false
-    question_id 1
+  end
+  factory :choice_b, class: Choice do
+    text "b"
+    correct true
+  end
+  factory :choice_c, class: Choice do
+    text "c"
+    correct false
+  end
+  factory :choice_d, class: Choice do
+    text "d"
+    correct false
   end
 end
+
