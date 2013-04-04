@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :exam do
-    name "MyString"
+    name "exam"
     fee false
-    pass_rate 1
+    pass_rate 50
     creator_id 1
   end
 end
