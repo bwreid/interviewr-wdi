@@ -5,6 +5,5 @@ FactoryGirl.define do
     name "MyString"
     fee false
     pass_rate 1
-    creator_id 1
   end
 end
