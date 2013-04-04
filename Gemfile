@@ -16,6 +16,7 @@ gem 'rmagick'
 gem 'fog'
 gem 'stripe'
 
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -40,7 +41,10 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'annotate'
   gem 'quiet_assets'
-  gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
+end
+
+group :development do
+  gem 'better_errors'
 end
