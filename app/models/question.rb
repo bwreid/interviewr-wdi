@@ -13,5 +13,5 @@ class Question < ActiveRecord::Base
   attr_accessible :test_id, :text
   has_many :choices
   has_many :responses
-  belongs_to :test
+  belongs_to :exam
 end

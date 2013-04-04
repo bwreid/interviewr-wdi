@@ -13,5 +13,6 @@
 class Run < ActiveRecord::Base
   attr_accessible :count, :test_id, :user_id
   belongs_to :user
-  belongs_to :test
+  belongs_to :exam
+  has_many :responses
 end

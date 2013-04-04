@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
   attr_accessible :address, :balance, :email, :first, :image, :is_house, :last, :lat, :lon, :occupation, :password, :password_digest, :phone
   has_secure_password
   has_many :runs
-  has_many :responses
 
   before_save :get_location
   private
