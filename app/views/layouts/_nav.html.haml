@@ -1,0 +1,18 @@
+%ul.title-area
+  %li.name
+    %h1
+      %a{:href => "#"}
+        Interviewr
+  %li.toggle-topbar.menu-icon
+    %a{:href => "#"}
+      %span menu
+%section.top-bar-section
+  %ul.right
+    - if @auth.nil?
+      %li.divider
+      %li= link_to 'Register', new_user_path, :remote => true
+      %li.divider
+      %li= link_to 'Login', '/login', :remote => true
+    - else
+      %li.divider
+      %li= link_to 'Profile', user_path(@auth)

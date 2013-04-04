@@ -1,0 +1,7 @@
+=form_for @user, :remote => true do |f|
+  =f.label 'email'
+  =f.text_field 'email', :autofocus => true
+  =f.label 'password'
+  =f.password_field 'password'
+  =f.submit 'Login', :class => "button radius tiny"
+  =link_to("Cancel", "#", :"data-clear-form" => true, :class => "button radius tiny alert")
