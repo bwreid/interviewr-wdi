@@ -22,21 +22,12 @@
 require 'spec_helper'
 
 describe User do
-  describe '.runs' do
+  describe '#runs' do
     it 'should show the runs that the user has' do
       run = FactoryGirl.create(:run)
       user = FactoryGirl.create(:user)
       user.runs << run
       expect(user.runs.first).to eq run
-    end
-  end
-
-  describe '.responses' do
-    it 'should show a list of user responses' do
-      response = FactoryGirl.create(:response)
-      user = FactoryGirl.create(:user)
-      user.responses << response
-      expect(user.responses.first).to eq response
     end
   end
 end
