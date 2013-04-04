@@ -13,5 +13,21 @@
 require 'spec_helper'
 
 describe Choice do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#question' do
+    it "should belong to a question" do
+      question = FactoryGirl.create(:question)
+      choice = FactoryGirl.create(:choice)
+      question.choices << choice
+      expect(question.choices.first).to eq choice
+    end
+  end
+
+  describe '#choice' do
+    it "should have many response" do
+      choice = FactoryGirl.create(:choice)
+      response = FactoryGirl.create(:response)
+      choice.responses << response
+      expect(choice.responses.first).to eq response
+    end
+  end
 end

@@ -44,11 +44,11 @@ ActiveRecord::Schema.define(:version => 20130404181421) do
 
   create_table "responses", :force => true do |t|
     t.boolean  "answer"
-    t.integer  "user_id"
     t.integer  "question_id"
     t.integer  "choice_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "run_id"
   end
 
   create_table "runs", :force => true do |t|
