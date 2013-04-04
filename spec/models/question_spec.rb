@@ -24,13 +24,18 @@ describe Question do
     end
     it 'has many responses' do
       question = FactoryGirl.create(:question)
-
-
-
-    # end
-    # it 'belongs to test' do
-    #   # a question belongs to a test
-    # end
+      question.responses << FactoryGirl.create(:response_a) << FactoryGirl.create(:response_b) << FactoryGirl.create(:response_c) << FactoryGirl.create(:response_d)
+    end
+    it 'has a correct choice' do
+      question = FactoryGirl.create(:question)
+      question.choices << FactoryGirl.create(:choice_a) << FactoryGirl.create(:choice_b) << FactoryGirl.create(:choice_c) << FactoryGirl.create(:choice_d)
+      expect(question.choices.where(:correct => true)).to_not eq 0
+    end
+    it 'belongs to exam' do
+      question = FactoryGirl.create(:question)
+      exam = FactoryGirl.create(:exam)
+      exam.questions << question
+    end
   end
 end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404175231) do
+ActiveRecord::Schema.define(:version => 20130404190106) do
 
   create_table "choices", :force => true do |t|
     t.string   "text"
@@ -30,28 +30,33 @@ ActiveRecord::Schema.define(:version => 20130404175231) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "exams_tags", :id => false, :force => true do |t|
+    t.integer "tag_id"
+    t.integer "exam_id"
+  end
+
   create_table "questions", :force => true do |t|
     t.text     "text"
-    t.integer  "test_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "exam_id"
   end
 
   create_table "responses", :force => true do |t|
     t.boolean  "answer"
-    t.integer  "user_id"
     t.integer  "question_id"
     t.integer  "choice_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "run_id"
   end
 
   create_table "runs", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "test_id"
     t.integer  "count"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "exam_id"
   end
 
   create_table "tags", :force => true do |t|

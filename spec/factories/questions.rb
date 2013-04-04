@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :question, class: Question do
     text "MyText"
-    test_id 1
+    exam_id 1
   end
 end
