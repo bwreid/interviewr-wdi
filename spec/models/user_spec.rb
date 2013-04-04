@@ -22,5 +22,12 @@
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '.runs' do
+    it 'should show the runs that the user has' do
+      run = FactoryGirl.create(:run)
+      user = FactoryGirl.create(:user)
+      user.runs << run
+      expect(user.runs.first).to be run
+    end
+  end
 end
