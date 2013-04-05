@@ -11,7 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404190106) do
+
+ActiveRecord::Schema.define(:version => 20130404200915) do
+
 
   create_table "choices", :force => true do |t|
     t.string   "text"
@@ -53,9 +55,9 @@ ActiveRecord::Schema.define(:version => 20130404190106) do
 
   create_table "runs", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "count"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "count",      :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.integer  "exam_id"
   end
 
