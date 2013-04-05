@@ -17,4 +17,16 @@ class Exam < ActiveRecord::Base
   has_many :runs
   has_and_belongs_to_many :tags
   has_many :questions
+  before_save :pass_rate
+
+  # calculates the percentage of the number of passing runs for an exam.
+  def passing
+    count = 0
+    self.runs.each {|run| count += 1 if run.score >= self.pass_rate} if self.runs.present?
+    (count.to_f / self.runs.count) * 100
+  end
+
+
+
+
 end
