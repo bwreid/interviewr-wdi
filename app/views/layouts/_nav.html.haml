@@ -16,3 +16,5 @@
     - else
       %li.divider
       %li= link_to 'Profile', user_path(@auth)
+      %li.divider
+      %li= link_to 'Logout', '/login', :method => :delete
