@@ -11,10 +11,11 @@
 #
 
 class Run < ActiveRecord::Base
-  attr_accessible :count, :test_id, :user_id
+  attr_accessible :count, :exam_id, :user_id
   belongs_to :user
   belongs_to :exam
   has_many :responses
+
 
   def right_responses
     right_responses = 0
@@ -50,5 +51,9 @@ class Run < ActiveRecord::Base
 
   def score
     ((self.right_responses.to_f / self.exam.questions.length.to_f)*100).to_i
+  end
+
+  def passed?
+    self.score >= self.exam.pass_rate ? true : false
   end
 end

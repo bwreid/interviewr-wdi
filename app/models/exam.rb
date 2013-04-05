@@ -17,7 +17,6 @@ class Exam < ActiveRecord::Base
   has_many :runs
   has_and_belongs_to_many :tags
   has_many :questions
-  before_save :pass_rate
 
   # calculates the percentage of the number of passing runs for an exam.
   def passing
@@ -26,7 +25,10 @@ class Exam < ActiveRecord::Base
     (count.to_f / self.runs.count) * 100
   end
 
-
-
-
+  def make_responses
+    choices = self.questions.map{|x| x.choices}.flatten
+    choices.each do |x|
+      Response.create(question_id:x.question.id, choice_id:x.id)
+    end
+  end
 end

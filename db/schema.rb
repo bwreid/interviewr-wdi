@@ -54,9 +54,9 @@ ActiveRecord::Schema.define(:version => 20130404213015) do
 
   create_table "runs", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "count"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "count",      :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.integer  "exam_id"
   end
 
