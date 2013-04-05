@@ -10,7 +10,7 @@
 #
 
 class Question < ActiveRecord::Base
-  attr_accessible :test_id, :text
+  attr_accessible :exam_id, :text
   has_many :choices
   has_many :responses
   belongs_to :exam

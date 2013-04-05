@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :address
       t.string :phone
       t.string :occupation
-      t.decimal :balance
+      t.decimal :balance, :default => 0
       t.string :image
       t.string :password_digest
       t.float :lat
