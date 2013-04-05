@@ -1,6 +1,11 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
+  factory :response, class: Response do
+    answer false
+    run_id 1
+    question_id 1
+  end
   factory :response_a, class: Response do
     answer false
     run_id 1
