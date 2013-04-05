@@ -1,1 +1,3 @@
-$('').append('<%=j render 'partial' %>')
+$('#exams').empty().append('<%=j render 'exams/exams' %>');
+$('.exam_form_partial').slideUp();
+$('#exam_button').show()

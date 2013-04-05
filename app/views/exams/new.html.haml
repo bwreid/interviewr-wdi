@@ -1,18 +1,13 @@
 #exam_form.row
   .large-10.columns.large-centered
     %h1 New Exam Page
-    = link_to('Create New Exam', '#', class: 'button secondary')
-    .exam_form_partial
+    #exam_button
+      = link_to('Create New Exam', '#', class: 'button secondary')
+    .exam_form_partial{ style: 'display: none;'}
       = render partial: 'form'
 
 #exams.row
-  .large-10.columns.large-centered
-    %h3 My Exams
-    - Exam.all.each do |exam|
-      %p
-        %strong= exam.name
-        = exam.tags.map(&:name).join(', ')
-
+  = render partial: 'exams/exams'
 #question_form
 
 

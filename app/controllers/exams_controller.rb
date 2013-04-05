@@ -37,8 +37,6 @@ class ExamsController < ApplicationController
     params[:tags].split(', ').each do |tag|
       exam.tags << Tag.find_or_create_by_name( name: tag.downcase )
     end
-
-    redirect_to(new_exam_path)
   end
 
 

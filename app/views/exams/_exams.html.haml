@@ -1,0 +1,10 @@
+.large-10.columns.large-centered
+  %h3 My Exams
+  - Exam.all.each do |exam|
+    %p
+      %strong= exam.name
+      = exam.tags.map(&:name).join(', ')
+      - exam.questions.each do |question|
+        = question.text
+        - question.choices.each do |choice|
+          = choice.text
