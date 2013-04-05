@@ -1,6 +1,6 @@
 .row
-  .small-8.small-centered.columns
-    =form_tag submit_exam_path do
+  .small-8.small-centered.columns#show_body
+    =form_tag submit_exam_path, :remote => true do
       -@exam.questions.each do |question|
         %p= question.text
         -(@responses.select{|x| x.question == question}).each do |response|
