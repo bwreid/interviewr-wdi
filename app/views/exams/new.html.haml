@@ -1,8 +1,10 @@
 %h1 New Exam Page
-= form_for @exam do |f|
-  = f.label :exam_name
-  = f.text_field :name
-  = f.fields_for :questions do |builder|
-    = builder.label :text
-    = builder.text_area :text
-  = f.submit 'submit'
+.row
+  .six.columns
+  = form_for @exam do |f|
+    = f.label :exam_name
+    = f.text_field :name
+    = f.fields_for :questions do |builder|
+      = render partial: 'questions/question_fields', locals: { :f => builder }
+    = link_to_add_fields "Add Question", f, :questions
+    = f.submit

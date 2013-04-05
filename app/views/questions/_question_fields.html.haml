@@ -1,0 +1,8 @@
+.fields
+  = f.label :question_text
+  = f.text_area :text
+  = f.hidden_field :_destroy
+  = link_to 'Remove Question', '#', :class => 'remove_fields'
+  = f.fields_for :choices do |builder|
+    = render partial: 'choices/choice_fields', locals: { :f => builder}
+  = link_to_add_fields 'Add answer', f, :choices

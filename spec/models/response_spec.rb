@@ -4,11 +4,11 @@
 #
 #  id          :integer          not null, primary key
 #  answer      :boolean
-#  user_id     :integer
 #  question_id :integer
 #  choice_id   :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  run_id      :integer
 #
 
 require 'spec_helper'

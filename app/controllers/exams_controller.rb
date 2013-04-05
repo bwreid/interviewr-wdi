@@ -7,11 +7,11 @@ class ExamsController < ApplicationController
 
   def new
     @exam = Exam.new
-    @exam.questions.build
   end
 
   def create
-
+    @exam = Exam.create(params[:exam])
+    binding.pry
   end
 
   def edit
