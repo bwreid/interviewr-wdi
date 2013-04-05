@@ -3,6 +3,8 @@ Interviewr::Application.routes.draw do
   resources :exams do
     member do
       post "submit"
+      get "analytic"
+      get "scores"
     end
   end
   get '/login' => 'session#new'

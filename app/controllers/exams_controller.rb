@@ -44,6 +44,19 @@ class ExamsController < ApplicationController
     redirect_to(new_exam_path)
   end
 
+  def analytic
+    @exam = Exam.find(params[:id])
+    # @runs = Run.where(:exam_id => @exam.id)
+    @users = Run.where(:exam_id => @exam.id).map{|x| x.user}.uniq
+  end
+
+  def scores
+    exam = Exam.find(params[:id])
+    runs = Run.where(:exam_id => exam.id)
+    scores = runs.map{|x| {datetime:x.created_at.to_s[0..18], score:x.score, name:x.user.first}}
+    render :json => scores
+  end
+
   def edit
   end
 
