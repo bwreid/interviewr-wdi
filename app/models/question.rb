@@ -4,9 +4,9 @@
 #
 #  id         :integer          not null, primary key
 #  text       :text
-#  test_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  exam_id    :integer
 #
 
 class Question < ActiveRecord::Base

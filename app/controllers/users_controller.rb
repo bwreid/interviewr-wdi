@@ -4,13 +4,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new( params[:user] )
-    if user.save
-      @user = user
-    else
-      flash[:notice] = 'Something went wrong.'
-      flash[:notice] = 'Username already exists!' if User.where( username: params[:user][:username] ).first
-      @user = User.new
+    @user = User.create(params[:user])
+    if @user.valid?
+      session[:user_id] = @user.id
+      authentication
     end
+  end
+  def show
+    @user = User.find(params[:id])
   end
 end
