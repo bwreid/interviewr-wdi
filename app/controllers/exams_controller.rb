@@ -10,7 +10,6 @@ class ExamsController < ApplicationController
   end
 
   def submit
-    binding.pry
     exam = Exam.find(params[:id])
     exam.questions.each do |x|
       params["#{x.id}"].each do |y|
