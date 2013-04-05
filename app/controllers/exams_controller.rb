@@ -53,4 +53,11 @@ class ExamsController < ApplicationController
 
   def destroy
   end
+
+  #  purchase an exam
+  def purchase
+  end
+
+
+
 end
