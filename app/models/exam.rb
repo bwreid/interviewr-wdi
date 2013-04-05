@@ -17,4 +17,11 @@ class Exam < ActiveRecord::Base
   has_many :runs
   has_and_belongs_to_many :tags
   has_many :questions
+
+  def make_responses
+    choices = self.questions.map{|x| x.choices}.flatten
+    choices.each do |x|
+      Response.create(question_id:x.question.id, choice_id:x.id)
+    end
+  end
 end
