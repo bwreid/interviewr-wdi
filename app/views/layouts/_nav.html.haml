@@ -15,6 +15,8 @@
       %li= link_to 'Login', '/login', :remote => true
     - else
       %li.divider
+        %li= link_to 'New Exam', new_exam_path
+      %li.divider
       %li= link_to 'Profile', user_path(@auth)
       %li.divider
       %li= link_to 'Logout', '/login', :method => :delete

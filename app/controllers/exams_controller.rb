@@ -10,7 +10,6 @@ class ExamsController < ApplicationController
   end
 
   def submit
-    binding.pry
     exam = Exam.find(params[:id])
     exam.questions.each do |x|
       params["#{x.id}"].each do |y|
@@ -19,7 +18,7 @@ class ExamsController < ApplicationController
         r.save
       end
     end
-    run = Run.create(exam_id:exam.id, user_id:@uth.id)
+    run = Run.create(exam_id:exam.id, user_id:@auth.id)
     run.responses << exam.questions.map{|x| x.responses}.flatten.select{|y| y.run_id == nil}
     redirect_to(root_path)
   end
@@ -28,15 +27,11 @@ class ExamsController < ApplicationController
   def index
   end
 
-  def show
-  end
-
   def new
     @exam = Exam.new
   end
 
   def create
-    binding.pry
     # NEED TO ASSOCIATE CREATOR_ID WITH USER
     exam = Exam.create( params[:exam] )
     params[:tags].split(', ').each do |tag|
