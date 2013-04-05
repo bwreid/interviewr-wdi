@@ -23,7 +23,7 @@ describe Choice do
   end
 
   describe '#choice' do
-    it "should have many response" do
+    it "should have many responses" do
       choice = FactoryGirl.create(:choice)
       response = FactoryGirl.create(:response)
       choice.responses << response

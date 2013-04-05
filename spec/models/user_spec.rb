@@ -22,10 +22,19 @@
 require 'spec_helper'
 
 describe User do
+  let(:user) {User.create(first: "Bob", last: "Bobberson", email: "bob@gmail.com", address: "10 E 21st St, New York, NY", password: "a", password_confirmation: "a")}
+  describe '.create' do
+    it 'creates a new User object if validation passes' do
+      expect(user.id).to_not be nil
+    end
+    it 'does not create a User object if it fails validation' do
+      user1 = User.create
+      expect(user1.id).to be nil
+    end
+  end
   describe '#runs' do
     it 'should show the runs that the user has' do
       run = FactoryGirl.create(:run)
-      user = FactoryGirl.create(:user)
       user.runs << run
       expect(user.runs.first).to eq run
     end
