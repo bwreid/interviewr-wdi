@@ -6,3 +6,12 @@
 #login {
   display: none;
 }
+
+#info td:first-child {
+  font-weight: bold;
+}
+
+#map_canvas {
+  width: 220px;
+  height: 200px;
+}

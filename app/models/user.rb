@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :runs
   validates :email, :uniqueness => true
+  mount_uploader :image, PicUploader
 
   before_save :get_location
   private

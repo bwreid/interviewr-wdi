@@ -12,7 +12,7 @@ User.delete_all
 
 
 User.create(email: 'admin@gmail.com', is_house: true, password: 'a', password_confirmation: 'a')
-u1 = User.create(first: 'Bob', last: 'Bobberson', password: 'a', password_confirmation: 'a')
+u1 = User.create(first: 'Bob', last: 'Bobberson', password: 'a', password_confirmation: 'a', address: '10 E 21st St, New York, NY', email: 'bob@gmail.com')
 
 
 e1 = Exam.create(name:"Ruby Basics", fee:false, pass_rate:70, creator_id:u1.id)
