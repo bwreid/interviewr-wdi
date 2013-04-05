@@ -1,11 +1,19 @@
 .row
+  .small-12.columns
+    %h3= @exam.name
+.row
   .small-8.small-centered.columns#show_body
     =form_tag submit_exam_path, :remote => true do
-      -@exam.questions.each do |question|
-        %p= question.text
-        -(@responses.select{|x| x.question == question}).each do |response|
-          %span
-            =label_tag(response.choice.text)
-            =check_box_tag("#{question.id}[]", response.id)
-      %br
-      =submit_tag
+      %fieldset
+        %legend= "#{@exam.name}"
+        -@exam.questions.each_with_index do |question, i|
+          %p= "#{i+1}. #{question.text}"
+          -(@responses.select{|x| x.question == question}).each do |response|
+            %span
+              =check_box_tag("#{question.id}[]", response.id)
+              =label_tag(response.choice.text)
+              %br
+          %br
+
+        %br
+        =submit_tag
