@@ -9,12 +9,21 @@
 #  creator_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  cost       :decimal(, )      default(0.0)
 #
 
 class Exam < ActiveRecord::Base
-  attr_accessible :creator_id, :fee, :name, :pass_rate, :questions_attributes
+
+  attr_accessible :creator_id, :fee, :name, :pass_rate, :questions_attributes, :cost
   has_many :runs
   has_and_belongs_to_many :tags
   has_many :questions, :dependent => :destroy
   accepts_nested_attributes_for :questions, :reject_if => lambda { |a| a[:text].blank? }, :allow_destroy => true
+
+  def make_responses
+    choices = self.questions.map{|x| x.choices}.flatten
+    choices.each do |x|
+      Response.create(question_id:x.question.id, choice_id:x.id)
+    end
+  end
 end

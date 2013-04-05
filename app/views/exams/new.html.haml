@@ -1,10 +1,21 @@
-%h1 New Exam Page
-.row
-  .six.columns
-  = form_for @exam, remote: true do |f|
-    = f.label :exam_name
-    = f.text_field :name
-    = f.fields_for :questions do |builder|
-      = render partial: 'questions/question_fields', locals: { :f => builder }
-    = link_to_add_fields "Add Question", f, :questions
-    = f.submit
+#exam_form.row
+  .large-10.columns.large-centered
+    %h1 New Exam Page
+    = link_to('Create New Exam', '#', class: 'button secondary')
+    .exam_form_partial
+      = render partial: 'form'
+
+#exams.row
+  .large-10.columns.large-centered
+    %h3 My Exams
+    - Exam.all.each do |exam|
+      %p
+        %strong= exam.name
+        = exam.tags.map(&:name).join(', ')
+
+#question_form
+
+
+%script
+  $(document).ready(exam_form.document_ready)
+

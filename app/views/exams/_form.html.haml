@@ -1,0 +1,18 @@
+= form_for @exam do |f|
+  = f.label :name
+  = f.text_field :name, autofocus: true
+  = label_tag 'Fee'
+  = f.radio_button :fee, true
+  = label_tag 'Free'
+  = f.radio_button :fee, false
+  .fee_input{ style: 'display: none;' }
+    = f.label :cost
+    = f.text_field :cost
+  = f.label :pass_rate
+  = f.text_field :pass_rate
+  = label_tag 'Tags'
+  = text_field_tag 'tags'
+  = f.fields_for :questions do |builder|
+    = render partial: 'questions/question_fields', locals: { :f => builder }
+  %p= link_to_add_fields "Add Question", f, :questions
+  = f.submit nil, class: 'button'

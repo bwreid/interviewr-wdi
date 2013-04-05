@@ -1,7 +1,7 @@
 .fields
   = f.label :answer_text
   = f.text_field :text
-  = f.label :correct
-  = f.text_field :correct
+  = f.label 'correct'
+  = f.check_box :correct
   = f.hidden_field :_destroy
-  = link_to 'Remove answer', '#', :class => 'remove_fields'
+  %p= link_to 'Remove answer', '#', :class => 'remove_fields'
