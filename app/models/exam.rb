@@ -15,5 +15,6 @@ class Exam < ActiveRecord::Base
   attr_accessible :creator_id, :fee, :name, :pass_rate
   has_many :runs
   has_and_belongs_to_many :tags
-  has_many :questions
+  has_many :questions, :dependent => :destroy
+  accepts_nested_attributes_for :questions, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
 end

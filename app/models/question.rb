@@ -14,4 +14,5 @@ class Question < ActiveRecord::Base
   has_many :choices
   has_many :responses
   belongs_to :exam
+  accepts_nested_attributes_for :choices, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
 end

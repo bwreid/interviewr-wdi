@@ -4,10 +4,10 @@
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer
-#  test_id    :integer
 #  count      :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  exam_id    :integer
 #
 
 require 'spec_helper'

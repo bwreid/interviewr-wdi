@@ -6,9 +6,12 @@ class ExamsController < ApplicationController
   end
 
   def new
+    @exam = Exam.new
+    @exam.questions.build
   end
 
   def create
+
   end
 
   def edit

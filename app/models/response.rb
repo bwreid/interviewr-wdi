@@ -13,7 +13,5 @@
 
 class Response < ActiveRecord::Base
   attr_accessible :answer, :question_id, :user_id
-  belongs_to :run
-  belongs_to :question
-  belongs_to :choice
+  belongs_to :run, :question, :choice
 end
