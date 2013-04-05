@@ -1,9 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :run do
-    user_id 1
-    exam_id 1
+  factory :run, class: Run do
     count 1
   end
 end

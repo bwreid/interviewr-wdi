@@ -9,10 +9,11 @@
 #  creator_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  cost       :decimal(, )      default(0.0)
 #
 
 class Exam < ActiveRecord::Base
-  attr_accessible :creator_id, :fee, :name, :pass_rate
+  attr_accessible :creator_id, :fee, :name, :pass_rate, :cost
   has_many :runs
   has_and_belongs_to_many :tags
   has_many :questions

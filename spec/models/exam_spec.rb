@@ -9,6 +9,7 @@
 #  creator_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  cost       :decimal(, )      default(0.0)
 #
 
 require 'spec_helper'
@@ -19,7 +20,7 @@ describe Exam do
       exam = FactoryGirl.create(:exam)
       expect(exam).to be_an_instance_of(Exam)
       expect(exam.id).to_not eq nil
-      expect(exam.name).to eq "MyString"
+      expect(exam.name).to eq "exam"
     end
   end
 
