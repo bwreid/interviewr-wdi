@@ -19,7 +19,7 @@ class ExamsController < ApplicationController
         r.save
       end
     end
-    run = Run.create(exam_id:exam.id, user_id:User.last.id)
+    run = Run.create(exam_id:exam.id, user_id:@uth.id)
     run.responses << exam.questions.map{|x| x.responses}.flatten.select{|y| y.run_id == nil}
     redirect_to(root_path)
   end
