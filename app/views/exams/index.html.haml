@@ -1,0 +1,8 @@
+%h1 This is a Dummy Exams Index Page
+%table
+- @exams.each do |exam|
+  %tr{:style=>"background-color:#{cycle('black','gray')};"}
+  = form_tag purchase_exam(exam.id), :remote=>true do
+    %td= exam.name
+    %td= submit_tag "Buy Now", :class=>'button tiny radius alert'
+

@@ -11,9 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20130404213015) do
-
+ActiveRecord::Schema.define(:version => 20130405155324) do
 
   create_table "choices", :force => true do |t|
     t.string   "text"
@@ -98,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20130404213015) do
     t.float    "lon"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+    t.integer  "customer_id"
   end
 
 end

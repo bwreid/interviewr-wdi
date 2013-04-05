@@ -1,0 +1,7 @@
+.row
+  .small-8.small-centered.columns
+    %h4= "You got a #{@run.score}%"
+    %h5= "You answered #{@run.wrong_responses} out of #{@run.exam.questions.count} wrong"
+    %h5= "You answered #{@run.right_responses} out of #{@run.exam.questions.count} right"
+    %h4= "Do you want to take #{@run.exam.name} again?"
+    =link_to("Try Again", exam_path(@run.exam.id), :class => "button radius")
