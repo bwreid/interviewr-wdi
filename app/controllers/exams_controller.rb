@@ -18,13 +18,17 @@ class ExamsController < ApplicationController
         r.save
       end
     end
-    run = Run.create(exam_id:exam.id, user_id:@auth.id)
-    run.responses << exam.questions.map{|x| x.responses}.flatten.select{|y| y.run_id == nil}
-    redirect_to(root_path)
+    @run = Run.create(exam_id:exam.id, user_id:@auth.id)
+    @run.responses << exam.questions.map{|x| x.responses}.flatten.select{|y| y.run_id == nil}
+    Notifications.exam_taken(@auth, @run).deliver
+    client = Twilio::REST::Client.new(ENV['TW_SID'], ENV['TW_TOK'])
+    body = "You completed #{@run.exam.name} and you got #{@run.score}% on it. Check your email for more information"
+    client.account.sms.messages.create(:from => ENV['TW_NUM'], :to => @auth.phone, :body => body)
   end
 
 
   def index
+    @exams = Exam.all
   end
 
   def new
