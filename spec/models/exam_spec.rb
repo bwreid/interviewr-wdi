@@ -13,11 +13,13 @@
 #
 
 require 'spec_helper'
+require 'models/shared/exam_helper.rb'
+include ExamHelper
 
 describe Exam do
+  let(:exam) {FactoryGirl.create(:exam)}
   describe ".create" do
     it "should have an id and stuff" do
-      exam = FactoryGirl.create(:exam)
       expect(exam).to be_an_instance_of(Exam)
       expect(exam.id).to_not eq nil
       expect(exam.name).to eq "exam"
@@ -26,7 +28,6 @@ describe Exam do
 
   describe "#tags" do
     it "should have tags" do
-      exam = FactoryGirl.create(:exam)
       tag = FactoryGirl.create(:tag)
       exam.tags << tag
       expect(exam.tags.first).to eq tag
@@ -35,11 +36,21 @@ describe Exam do
 
   describe "#runs" do
     it "should have runs" do
-      exam = FactoryGirl.create(:exam)
       run = FactoryGirl.create(:run)
       run.exam = exam
       run.save
       expect(exam.runs.first).to eq run
     end
   end
+
+  describe "#passing" do
+    it 'should calcuate the percentage of the number of passing runs for a given exam' do
+      exam = create_exams
+      expect(exam.passing).to eq 100.0
+    end
+  end
+
+
+
+
 end

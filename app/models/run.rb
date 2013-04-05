@@ -53,4 +53,7 @@ class Run < ActiveRecord::Base
     ((self.right_responses.to_f / self.exam.questions.length.to_f)*100).to_i
   end
 
+  def passed?
+    self.score >= self.exam.pass_rate ? true : false
+  end
 end
