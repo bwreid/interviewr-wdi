@@ -1,8 +1,8 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :question do
+  factory :question, class: Question do
     text "MyText"
-    test_id 1
+    exam_id 1
   end
 end
