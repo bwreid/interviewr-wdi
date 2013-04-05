@@ -11,7 +11,6 @@ class ExamsController < ApplicationController
 
   def create
     @exam = Exam.create(params[:exam])
-    binding.pry
   end
 
   def edit

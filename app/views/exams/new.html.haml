@@ -1,7 +1,7 @@
 %h1 New Exam Page
 .row
   .six.columns
-  = form_for @exam do |f|
+  = form_for @exam, remote: true do |f|
     = f.label :exam_name
     = f.text_field :name
     = f.fields_for :questions do |builder|
