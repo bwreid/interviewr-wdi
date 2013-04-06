@@ -59,9 +59,11 @@ class ExamsController < ApplicationController
   #  Else, create customer_id and Stripe account. Call Stripe customer dialog box
   def purchase
     exam = Exam.find(params[:id])
+    customer = ''
     begin
       if @auth.customer_id.nil?
         customer = Stripe::Customer.create(:email=>@auth.email,:card=>params[:token])
+        binding.pry
         @auth.customer_id = customer.id
         @auth.save
       end
@@ -69,8 +71,19 @@ class ExamsController < ApplicationController
     rescue Stripe::CardError=>@error
     end
     if @error.nil?
-      @auth.runs << Run.create(:exam_id=>exam.id, :user_id=>@auth.id)
-      Notifications.purchased(user, run)
+      run = Run.create(:exam_id=>exam.id, :user_id=>@auth.id)
+      @auth.runs << run
+
+      # add 15% of cost to house
+      house = User.where(:is_house=>true).first
+      house.balance += (exam.cost * 0.15)
+      house.save
+
+      # add 85% of cost to exam's creator
+      creator = User.find(exam.creator_id)
+      creator.balance += (exam.cost * 0.85)
+      Notifications.purchased(@auth, run)
+    redirect_to exams_path
     end
   end
 end
