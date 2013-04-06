@@ -47,18 +47,6 @@ window.app =
       data: msg
       xkey: 'datetime'
       ykeys: ['score']
-      labels: ['score']
-
-    # show_chart: (message)->
-    # app.mess = message
-    # console.log(message)
-    # new Morris.Line
-    #   element: "score_chart"
-    #   data: app.mess
-    #   xkey: 'datetime'
-    #   ykeys: ['score']
-    #   labels:['name']
-    #   ymin: "auto"
-    #   ymax: "auto"
+      labels: ['exam_name']
 
 $(document).ready(app.ready)
