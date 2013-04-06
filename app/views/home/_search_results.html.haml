@@ -6,7 +6,7 @@
         %td
           - @exams.each do |exam|
             = exam.name
-            = link_to(exam.name, exam, :remote => true, :class => 'button tiny radius secondary')
+            = link_to(exam.name, exam, :class => 'button tiny radius secondary')
           - @questions.each do |question|
             = question.text
           - @choices.each do |choice|

@@ -8,21 +8,7 @@
   .large-6.columns
 
 #search_results
-/ .row
-/   .large-10.columns
-/     - @exams.each do |exam|
-/       = link_to(exam.name)
-/       = exam.fee
-/       = exam.creator_id
-/       = exam.pass_rate
-/     - @questions.each do |question|
-/       = question.text
-/       = question.exam_id
-/     - @choices.each do |choice|
-/       = choice.text
-/       = choice.correct
-/     - @tags.each do |tag|
-/       = tag.name
+  = render partial: 'search_results'
 
 .row
   .small-5.small-centered.columns
