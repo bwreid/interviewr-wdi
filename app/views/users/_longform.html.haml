@@ -1,0 +1,24 @@
+=form_for @user, :html => {:multipart => true}, :remote => true do |f|
+  =f.label :first, 'First Name'
+  =f.text_field :first
+  =f.label :last, 'Last Name'
+  =f.text_field :last
+  =f.label :email
+  =f.text_field :email
+  =f.label :password, 'Password *'
+  =f.password_field :password
+  =f.label :password_confirmation, 'Password Confirmation *'
+  =f.password_field :password_confirmation
+  =f.label :address
+  =f.text_area :address
+  =f.label :phone
+  =f.text_field :phone
+  =f.label :occupation
+  =f.text_field :occupation
+  =f.label :image
+  =f.file_field :image
+  =f.text_field :remote_image_url, :placeholder => 'Either upload a file or include a link here'
+  =f.submit 'Update', :class => "button radius tiny"
+  =link_to("Cancel", "#", :"data-clear-form" => true, :class => "button radius tiny alert")
+
+%p * = Required

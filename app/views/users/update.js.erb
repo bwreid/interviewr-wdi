@@ -1,0 +1,6 @@
+<% if @user.valid? %>
+  $('#edit_user').foundation('reveal', 'close')
+  $('#user_info').empty().append('<%=j render :partial => 'users/info' %>');
+<% else %>
+  $('#edit_user').empty().append('<%=j render :partial => 'users/longform' %>');
+<% end %>

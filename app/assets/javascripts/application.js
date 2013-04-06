@@ -6,5 +6,6 @@
 //= require 'morris/morris.js'
 //= require 'interviewr'
 //= require 'exam'
+//= require 'map'
 
 $(document).foundation();
