@@ -10,6 +10,8 @@ jQuery ->
     $(this).before($(this).data('fields').replace(regexp, time))
     event.preventDefault()
 
+  $('#accordion').accordion();
+
 window.app =
   ready: ->
     $('#login').on('click', 'a[data-clear-form]', app.clear_form)
@@ -52,6 +54,9 @@ window.app =
       xkey: 'datetime'
       ykeys: ['score']
       labels:['name']
+      hoverCallback:(index, options) ->
+        row = options.data[index]
+        return "#{row.name}: #{row.score}"
       ymin: "auto"
       ymax: "auto"
 
@@ -64,12 +69,13 @@ window.app =
     $('#edit_user').empty()
 
   get_user_data: ->
-    user_id = $('#user_info').data('user_id');
-    settings =
-        datatype: "json"
-        type: "get"
-        url: "/users/#{user_id}/scores"
-      $.ajax(settings).done(app.show_user_chart)
+    if($("#user_info").length != 0)
+      user_id = $('#user_info').data('user_id');
+      settings =
+          datatype: "json"
+          type: "get"
+          url: "/users/#{user_id}/scores"
+        $.ajax(settings).done(app.show_user_chart)
 
   show_user_chart: (msg) ->
     new Morris.Bar
@@ -78,6 +84,9 @@ window.app =
       xkey: 'datetime'
       ykeys: ['score']
       labels: ['exam_name']
+      hoverCallback:(index, options) ->
+        row = options.data[index]
+        return "#{row.exam_name}: #{row.score}"
 
 $(document).ready(app.ready)
 
