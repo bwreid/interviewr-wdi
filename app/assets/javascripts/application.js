@@ -10,5 +10,6 @@
 //= require 'tablesort'
 //= require 'interviewr'
 //= require 'exam'
+//= require 'map'
 
 $(document).foundation();
