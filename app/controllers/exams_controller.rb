@@ -74,7 +74,6 @@ class ExamsController < ApplicationController
     begin
       if @auth.customer_id.nil?
         customer = Stripe::Customer.create(:email=>@auth.email,:card=>params[:token])
-        binding.pry
         @auth.customer_id = customer.id
         @auth.save
       end
