@@ -96,7 +96,6 @@ class ExamsController < ApplicationController
       house.save
 
       # add 85% of cost to exam's creator
-      binding.pry
       creator = User.find(exam.creator_id)
       creator.balance += (exam.cost * 0.85)
       Notifications.purchased(@auth, run)
