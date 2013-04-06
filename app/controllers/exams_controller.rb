@@ -47,6 +47,7 @@ class ExamsController < ApplicationController
     params[:tags].split(', ').each do |tag|
       exam.tags << Tag.find_or_create_by_name( name: tag.downcase )
     end
+    exam.save
   end
 
   def edit
