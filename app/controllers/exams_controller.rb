@@ -72,11 +72,5 @@ class ExamsController < ApplicationController
       @auth.runs << Run.create(:exam_id=>exam.id, :user_id=>@auth.id)
       Notifications.purchased(user, run)
     end
-
-
-
   end
-
-
-
 end

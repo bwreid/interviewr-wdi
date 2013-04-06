@@ -10,10 +10,10 @@
       %script{:src => "https://checkout.stripe.com/v2/checkout.js",
         :class => "stripe-button",
         :'data-label' => exam.name,
-        :'data-amount' => exam.cost * 100,
+        :'data-amount' => (exam.cost * 100).to_i,
         :'data-key' => Rails.configuration.stripe[:publishable_key]}
       = form_tag(purchase_exam_path(exam.id), :remote=>true) do
-        %td= exam.name
-        %td= submit_tag "Buy Now", :class=>'button tiny radius alert'
+        / %td= exam.name
+        / %td= submit_tag "Buy Now", :class=>'button tiny radius alert'
 
 
