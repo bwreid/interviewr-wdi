@@ -11,19 +11,21 @@ Interviewr::Application.routes.draw do
 
     member do
       post "submit"
+      post "purchase"
     end
   end
 
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
-  resources :exams
   resources :users
+
 
   resources :questions do
     collection do
       get 'filter/', :action => :filter, :as => :filter
     end
   end
+
 
 end

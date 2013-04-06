@@ -2,7 +2,7 @@
   .large-10.columns.large-centered
     %h1 New Exam Page
     = link_to('Create New Exam', '#', class: 'button secondary')
-    .exam_form_partial
+    .exam_form_partial{ style: 'display: none;'}
       = render partial: 'form'
 
 #exams.row

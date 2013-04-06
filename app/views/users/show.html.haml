@@ -1,3 +1,13 @@
+#user_info
+  = render 'info'
 .row
   .small-12.columns
-    %h1= "#{@user.first}'s Profile"
+    %h3 My Exams
+    %ul#exams
+      - @user.my_exams.each do |exam|
+        %li= link_to exam.name, exam
+.row
+  .small-12.columns
+    %h3 Exams Taken
+#edit_user.reveal-modal
+  %a.close-reveal-modal ×
