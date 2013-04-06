@@ -9,7 +9,7 @@ User.delete_all
 # User :address, :balance, :email, :first, :image, :is_admin, :last, :lat, :lon, :occupation, :password, :password_digest, :phone
 
 User.create(email: 'admin@gmail.com', is_house: true, password: 'a', password_confirmation: 'a')
-u1 = User.create(first: 'Bob', last: 'Bobberson', password: 'a', password_confirmation: 'a', address: '10 E 21st St, New York, NY', email: 'bob@gmail.com')
+u1 = User.create(first: 'Bob', last: 'Bobberson', password: 'a', password_confirmation: 'a', address: '10 E 21st St, New York, NY', email: 'samdec11+bob@gmail.com', phone: '+13156574130')
 
 e1 = Exam.create(:name => "Ruby Basics", :fee => "$5.00", :pass_rate => "85%", :creator_id => u1.id)
 e2 = Exam.create(:name => "Computer Science", :fee => "Free", :pass_rate => "40%", :creator_id => u1.id)
