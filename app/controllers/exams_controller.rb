@@ -32,64 +32,65 @@ class ExamsController < ApplicationController
     @questions = @exams.questions
 
 
-  def index
-    @exams = Exam.all
-  end
-
-  def new
-    @exam = Exam.new
-  end
-
-  def create
-    # NEED TO ASSOCIATE CREATOR_ID WITH USER
-    exam = Exam.create( params[:exam] )
-    params[:tags].split(', ').each do |tag|
-      exam.tags << Tag.find_or_create_by_name( name: tag.downcase )
+    def index
+      @exams = Exam.all
     end
-  end
 
+    def new
+      @exam = Exam.new
+    end
 
-  def analytic
-    @exam = Exam.find(params[:id])
-    # @runs = Run.where(:exam_id => @exam.id)
-    @users = Run.where(:exam_id => @exam.id).map{|x| x.user}.uniq
-  end
-
-  def scores
-    exam = Exam.find(params[:id])
-    runs = Run.where(:exam_id => exam.id)
-    scores = runs.map{|x| {datetime:x.created_at.to_s[0..18], score:x.score, name:x.user.first}}
-    render :json => scores
-  end
-
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
-  #  purchase an exam
-  # Check if customer already has a Stripe account. If so, get stripe customer id.
-  #  Else, create customer_id and Stripe account. Call Stripe customer dialog box
-  def purchase
-    exam = Exam.find(params[:id])
-    begin
-      if @auth.customer_id.nil?
-        customer = Stripe::Customer.create(:email=>@auth.email,:card=>params[:token])
-        @auth.customer_id = customer.id
-        @auth.save
+    def create
+      # NEED TO ASSOCIATE CREATOR_ID WITH USER
+      exam = Exam.create( params[:exam] )
+      params[:tags].split(', ').each do |tag|
+        exam.tags << Tag.find_or_create_by_name( name: tag.downcase )
       end
-    Stripe::Charge.create(:customer=>@auth.customer_id, :amount=>(exam.cost*100).to_i, :description=>exam.name, :currency=>'usd')
-    rescue Stripe::CardError=>@error
     end
-    if @error.nil?
-      @auth.runs << Run.create(:exam_id=>exam.id, :user_id=>@auth.id)
-      Notifications.purchased(user, run)
+
+
+    def analytic
+      binding.pry
+      @exam = Exam.find(params[:id])
+      # @runs = Run.where(:exam_id => @exam.id)
+      @users = Run.where(:exam_id => @exam.id).map{|x| x.user}.uniq
+    end
+
+    def scores
+      exam = Exam.find(params[:id])
+      runs = Run.where(:exam_id => exam.id)
+      scores = runs.map{|x| {datetime:x.created_at.to_s[0..18], score:x.score, name:x.user.first}}
+      render :json => scores
+    end
+
+
+    def edit
+    end
+
+    def update
+    end
+
+    def destroy
+    end
+
+    #  purchase an exam
+    # Check if customer already has a Stripe account. If so, get stripe customer id.
+    #  Else, create customer_id and Stripe account. Call Stripe customer dialog box
+    def purchase
+      exam = Exam.find(params[:id])
+      begin
+        if @auth.customer_id.nil?
+          customer = Stripe::Customer.create(:email=>@auth.email,:card=>params[:token])
+          @auth.customer_id = customer.id
+          @auth.save
+        end
+        Stripe::Charge.create(:customer=>@auth.customer_id, :amount=>(exam.cost*100).to_i, :description=>exam.name, :currency=>'usd')
+      rescue Stripe::CardError=>@error
+      end
+      if @error.nil?
+        @auth.runs << Run.create(:exam_id=>exam.id, :user_id=>@auth.id)
+        Notifications.purchased(user, run)
+      end
     end
   end
 end
-
