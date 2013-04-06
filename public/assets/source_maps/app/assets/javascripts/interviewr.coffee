@@ -33,6 +33,4 @@ window.app =
       ymax: "auto"
 
 
-
-
 $(document).ready(app.ready)

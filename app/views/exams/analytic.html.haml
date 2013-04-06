@@ -4,22 +4,23 @@
     #eid= @exam.id
 .row
   .small-8.small-centered.columns
-    %table
-      %tr
-        %th User Name
-        %th Last Date
-        %th Last Score
-        %th Average Score
-        %th Number of Attempts
-        -@users.each do |user|
-          %tr
-            - run = user.runs.select{|x| x.exam == @exam}.last
-            - runs = user.runs.select{|x| x.exam == @exam}
-            %td= "#{user.first} #{user.last}"
-            %td= run.created_at.to_s[0,10]
-            %td= "#{run.score}%"
-            %td= "#{runs.map{|x| x.score}.sum/runs.length}%"
-            %td= runs.length
+    %table#exam_table
+      %thead
+        %tr
+          %th User Name
+          %th Last Date
+          %th Last Score
+          %th Average Score
+          %th Number of Attempts
+      -@users.each do |user|
+        %tr
+          - run = user.runs.select{|x| x.exam == @exam}.last
+          - runs = user.runs.select{|x| x.exam == @exam}
+          %td= "#{user.first} #{user.last}"
+          %td= run.created_at.to_s[0,10]
+          %td= "#{run.score}%"
+          %td= "#{runs.map{|x| x.score}.sum/runs.length}%"
+          %td= runs.length
 
     #score_chart
 
