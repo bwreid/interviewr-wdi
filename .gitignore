@@ -15,4 +15,3 @@
 /tmp
 config/database.yml
 config/initializers/fog_init.rb
-db/seeds.rb
