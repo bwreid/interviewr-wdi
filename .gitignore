@@ -13,6 +13,6 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-config/database.yml
-config/initializers/fog_init.rb
-db/seeds.rb
+/config/database.yml
+/config/initializers/fog_init.rb
+/db/seeds.rb
