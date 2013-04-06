@@ -1,0 +1,34 @@
+.row
+  .small-12.columns
+    %h1= "#{@user.first}'s Profile"
+.row
+  .small-3.columns
+    = image_tag @user.image.url
+  .small-9.columns
+    %table#info
+      %tr
+        %td Name
+        %td= "#{@user.first} #{@user.last}"
+      %tr
+        %td Address
+        %td= @user.address
+      %tr
+        %td Occupation
+        %td= @user.occupation
+      %tr
+        %td Email
+        %td= @user.email
+      %tr
+        %td Phone
+        %td= @user.phone
+      %tr
+        %td Balance
+        %td= number_to_currency(@user.balance)
+    - if @user = @auth
+      = link_to 'Edit Profile', edit_user_path, :remote => true, :class => 'button small'
+.row
+  .small-12.columns
+    - if @user.address.present?
+      #map_canvas
+        %script
+          = "gmap.display_map(#{@user.lat}, #{@user.lon}, 13);"

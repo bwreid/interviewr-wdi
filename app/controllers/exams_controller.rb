@@ -26,7 +26,6 @@ class ExamsController < ApplicationController
     client.account.sms.messages.create(:from => ENV['TW_NUM'], :to => @auth.phone, :body => body)
   end
 
-
   def index
     @exams = Exam.all
   end
@@ -38,14 +37,26 @@ class ExamsController < ApplicationController
   def create
     # NEED TO ASSOCIATE CREATOR_ID WITH USER
     exam = Exam.create( params[:exam] )
+    exam.update_attributes( creator_id: @auth.id )
     params[:tags].split(', ').each do |tag|
       exam.tags << Tag.find_or_create_by_name( name: tag.downcase )
     end
-
-    redirect_to(new_exam_path)
+    exam.save
   end
 
   def edit
+  end
+
+  def analytic
+    @exam = Exam.find(params[:id])
+    @users = Run.where(:exam_id => @exam.id).map{|x| x.user}.uniq
+  end
+
+  def scores
+    exam = Exam.find(params[:id])
+    runs = Run.where(:exam_id => exam.id)
+    scores = runs.map{|x| {datetime:x.created_at.to_s[0..18], score:x.score, name:x.user.first}}
+    render :json => scores
   end
 
   def update
@@ -67,7 +78,7 @@ class ExamsController < ApplicationController
         @auth.customer_id = customer.id
         @auth.save
       end
-    Stripe::Charge.create(:customer=>@auth.customer_id, :amount=>(exam.cost*100).to_i, :description=>exam.name, :currency=>'usd')
+      Stripe::Charge.create(:customer=>@auth.customer_id, :amount=>(exam.cost*100).to_i, :description=>exam.name, :currency=>'usd')
     rescue Stripe::CardError=>@error
     end
     if @error.nil?

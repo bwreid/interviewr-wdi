@@ -13,10 +13,12 @@
 #
 
 class Exam < ActiveRecord::Base
-  attr_accessible :creator_id, :fee, :name, :pass_rate, :cost
+
+  attr_accessible :creator_id, :fee, :name, :pass_rate, :questions_attributes, :cost
   has_many :runs
   has_and_belongs_to_many :tags
-  has_many :questions
+  has_many :questions, :dependent => :destroy
+  accepts_nested_attributes_for :questions, :reject_if => lambda { |a| a[:text].blank? }, :allow_destroy => true
 
   # calculates the percentage of the number of passing runs for an exam.
   def passing
