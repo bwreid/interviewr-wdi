@@ -28,7 +28,10 @@ window.app =
       data: app.mess
       xkey: 'datetime'
       ykeys: ['score']
-      labels:['name']
+      labels:['elephant']
+      hoverCallback:(index, options) ->
+        row = options.data[index]
+        return "#{row.name}: #{row.score}"
       ymin: "auto"
       ymax: "auto"
 
