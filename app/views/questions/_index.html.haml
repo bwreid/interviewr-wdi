@@ -1,0 +1,12 @@
+- if exam.questions.present?
+  - questions.each do |question|
+    = question.text
+    - question.answers.each do |answer|
+      = answer.text
+- form_for exam do |f|
+  = f.label :name
+  = f.text_field :name
+  = f.fields_for :questions
+#questions
+#new_question
+  = link_to 'New question', new_question_path, :remote => true
