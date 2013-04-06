@@ -23,7 +23,7 @@ class Exam < ActiveRecord::Base
   # calculates the percentage of the number of passing runs for an exam.
   def passing
     count = 0
-    self.runs.each {|run| count += 1 if run.score >= self.pass_rate} if self.runs.present?
+    self.runs.each {|run| count += 1 if run.passed?} if self.runs.present?
     (count.to_f / self.runs.count) * 100
   end
 
