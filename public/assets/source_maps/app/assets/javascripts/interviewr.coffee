@@ -10,6 +10,8 @@ jQuery ->
     $(this).before($(this).data('fields').replace(regexp, time))
     event.preventDefault()
 
+  $('#accordion').accordion();
+
 window.app =
   ready: ->
     $('#login').on('click', 'a[data-clear-form]', app.clear_form)
