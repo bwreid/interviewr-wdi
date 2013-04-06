@@ -1,4 +1,30 @@
+
+%h1 Hi.
+
+/ - if @auth.present?
+.row
+  .large-6.columns
+    = text_field_tag :search, nil, :autofocus => true
+  .large-6.columns
+
+#search_results
+/ .row
+/   .large-10.columns
+/     - @exams.each do |exam|
+/       = link_to(exam.name)
+/       = exam.fee
+/       = exam.creator_id
+/       = exam.pass_rate
+/     - @questions.each do |question|
+/       = question.text
+/       = question.exam_id
+/     - @choices.each do |choice|
+/       = choice.text
+/       = choice.correct
+/     - @tags.each do |tag|
+/       = tag.name
+
 .row
   .small-5.small-centered.columns
     #login
-%h1 Hi.
+

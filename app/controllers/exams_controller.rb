@@ -1,5 +1,6 @@
 class ExamsController < ApplicationController
 
+
   def show
     @exam = Exam.find(params[:id])
     responses = @exam.questions.first.responses.select{|x| x.run_id == nil}
@@ -25,6 +26,10 @@ class ExamsController < ApplicationController
     body = "You completed #{@run.exam.name} and you got #{@run.score}% on it. Check your email for more information"
     client.account.sms.messages.create(:from => ENV['TW_NUM'], :to => @auth.phone, :body => body)
   end
+
+  def filter
+    question = question.find.params[:question_id]
+    @questions = @exams.questions
 
 
   def index
@@ -87,3 +92,4 @@ class ExamsController < ApplicationController
     end
   end
 end
+

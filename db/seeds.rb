@@ -9,6 +9,11 @@ User.delete_all
 # User :address, :balance, :email, :first, :image, :is_admin, :last, :lat, :lon, :occupation, :password, :password_digest, :phone
 
 User.create(email: 'admin@gmail.com', is_house: true, password: 'a', password_confirmation: 'a')
+
+
+u1 = User.create(first: 'Bob', last: 'Bobberson', password: 'a', password_confirmation: 'a')
+u1 = User.create(first: 'Bob', last: 'Bobberson', email:"janesternbach+1@gmail.com", password: 'a', password_confirmation: 'a', phone:"+16463275054")
+
 u1 = User.create(first: 'Bob', last: 'Bobberson', password: 'a', password_confirmation: 'a', address: '10 E 21st St, New York, NY', email: 'samdec11+bob@gmail.com', phone: '+13156574130')
 
 u2 = User.create(first: 'Rodolfo', last: 'Klein', password: 'a', password_confirmation: 'a')
@@ -63,4 +68,5 @@ t2 = Tag.create(:name => "Basics")
 t3 = Tag.create(:name => "CS")
 t4 = Tag.create(:name => "NYC")
 t5 = Tag.create(:name => "General Assembly")
+
 
