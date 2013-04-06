@@ -1,0 +1,11 @@
+.large-10.columns.large-centered
+  %h3 My Exams
+  - Exam.all.each do |exam|
+    %fieldset
+      %legend= exam.name
+      = exam.tags.map(&:name).join(', ')
+      - exam.questions.each_with_index do |question, i|
+        %p= "#{i + 1}. #{question.text}"
+        - question.choices.each do |choice|
+          %p= "#{i + 1}. #{choice.text}"
+
