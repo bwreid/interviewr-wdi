@@ -11,11 +11,11 @@ User.delete_all
 User.create(email: 'admin@gmail.com', is_house: true, password: 'a', password_confirmation: 'a')
 u1 = User.create(first: 'Bob', last: 'Bobberson', email:"janesternbach+1@gmail.com", password: 'a', password_confirmation: 'a', phone:"+16463275054")
 u2 = User.create(first: 'Rodolfo', last: 'Klein', password: 'a', password_confirmation: 'a')
-
-e1 = Exam.create(:name => "Ruby Basics", :fee => "$5.00", :pass_rate => "85%", :creator_id => u1.id)
-e2 = Exam.create(:name => "Computer Science", :fee => "Free", :pass_rate => "40%", :creator_id => u1.id)
-e3 = Exam.create(:name => "Python", :fee => "Free", :pass_rate => "30%", :creator_id => u1.id)
-e4 = Exam.create(:name => "Matlab", :fee => "$10.00", :pass_rate => "15%", :creator_id => u1.id)
+u3 = User.create(:email=>'byingling@gmail.com', :first=>'Brian',:last=>'Yingling',:password=>'a',:password_confirmation=>'a')
+e1 = Exam.create(:name => "Ruby Basics", :fee => true, :cost=>'5.00', :pass_rate => "85%", :creator_id => u1.id)
+e2 = Exam.create(:name => "Computer Science", :fee => false, :pass_rate => "40%", :creator_id => u1.id)
+e3 = Exam.create(:name => "Python", :fee => false, :pass_rate => "30%", :creator_id => u1.id)
+e4 = Exam.create(:name => "Matlab", :fee => true, :cost=>'10.00', :pass_rate => "15%", :creator_id => u1.id)
 e5 = Exam.create(:name => "CSS", :fee => "Free", :pass_rate => "80%", :creator_id => u1.id)
 
 # exam 1

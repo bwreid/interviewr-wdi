@@ -9,5 +9,6 @@
 //= require 'jquery.dataTables.js'
 //= require 'tablesort'
 //= require 'interviewr'
+//= require 'exam'
 
 $(document).foundation();
