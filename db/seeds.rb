@@ -19,11 +19,17 @@ u5 = User.create(first: 'Rodolfo', last: 'Klein', password: 'a', password_confir
 u6 = User.create(:email=>'byingling@gmail.com', :first=>'Brian',:last=>'Yingling',:password=>'a',:password_confirmation=>'a', :address=>'2 Orston Rd, Parsippany, NJ 07054')
 
 
-e1 = Exam.create(:name => "Ruby Basics", :fee => true, :cost=>5.00, :pass_rate => "85", :creator_id => u1.id)
-e2 = Exam.create(:name => "Computer Science", :fee => true,:cost=>3.00, :pass_rate => "40", :creator_id => u1.id)
-e3 = Exam.create(:name => "Python", :fee => true, :cost=>5.00, :pass_rate => "30", :creator_id => u1.id)
-e4 = Exam.create(:name => "Matlab", :fee => true, :cost=>10.00, :pass_rate => "15%", :creator_id => u1.id)
-e5 = Exam.create(:name => "CSS", :fee => false, :pass_rate => "80", :creator_id => u1.id)
+e1 = Exam.create(:name => "Ruby Basics", :fee => true, :cost=>5.00, :pass_rate => "85")
+e2 = Exam.create(:name => "Computer Science", :fee => true,:cost=>3.00, :pass_rate => "40")
+e3 = Exam.create(:name => "Python", :fee => true, :cost=>5.00, :pass_rate => "30")
+e4 = Exam.create(:name => "Matlab", :fee => true, :cost=>10.00, :pass_rate => "15%")
+e5 = Exam.create(:name => "CSS", :fee => false, :pass_rate => "80")
+
+e1.user << u1
+e2.user << u1
+e3.user << u1
+e4.user << u1
+e4.user << u1
 
 # exam 1
 q1 = Question.create(:text => "What is an array used for", :exam_id => e1.id)
