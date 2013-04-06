@@ -13,6 +13,8 @@ Interviewr::Application.routes.draw do
     member do
       post "submit"
       post "purchase"
+      get "analytic"
+      get "scores"
     end
   end
 
