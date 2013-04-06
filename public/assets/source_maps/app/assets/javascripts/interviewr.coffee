@@ -13,7 +13,7 @@ jQuery ->
 window.app =
   ready: ->
     $('#login').on('click', 'a[data-clear-form]', app.clear_form)
-    # app.get_scores()
+    app.get_scores()
     $('body').on('keyup', '#search', app.get_search_results)
     $('#edit_user').on('click', 'a[data-clear-form]', app.clear_longform)
     app.get_user_data()
@@ -64,12 +64,13 @@ window.app =
     $('#edit_user').empty()
 
   get_user_data: ->
-    user_id = $('#user_info').data('user_id');
-    settings =
-        datatype: "json"
-        type: "get"
-        url: "/users/#{user_id}/scores"
-      $.ajax(settings).done(app.show_user_chart)
+    if($("#user_info").length != 0)
+      user_id = $('#user_info').data('user_id');
+      settings =
+          datatype: "json"
+          type: "get"
+          url: "/users/#{user_id}/scores"
+        $.ajax(settings).done(app.show_user_chart)
 
   show_user_chart: (msg) ->
     new Morris.Bar
