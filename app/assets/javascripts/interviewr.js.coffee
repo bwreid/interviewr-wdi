@@ -52,6 +52,9 @@ window.app =
       xkey: 'datetime'
       ykeys: ['score']
       labels:['name']
+      hoverCallback:(index, options) ->
+        row = options.data[index]
+        return "#{row.name}: #{row.score}"
       ymin: "auto"
       ymax: "auto"
 
