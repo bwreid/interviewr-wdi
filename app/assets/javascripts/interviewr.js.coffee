@@ -79,6 +79,9 @@ window.app =
       xkey: 'datetime'
       ykeys: ['score']
       labels: ['exam_name']
+      hoverCallback:(index, options) ->
+        row = options.data[index]
+        return "#{row.exam_name}: #{row.score}"
 
 $(document).ready(app.ready)
 
