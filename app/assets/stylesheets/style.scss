@@ -16,11 +16,11 @@
   height: 200px;
 }
 
-#exams li {
+#my_exams li {
   list-style: none;
 }
 
-#exams a {
+#my_exams a {
   font-weight: bold;
 }
 
@@ -28,6 +28,7 @@ span label {
   display: inline-block;
 }
 
+<<<<<<< HEAD
 #score_chart {
   width: 100%;
   height: 300px;
@@ -36,3 +37,14 @@ span label {
 #exam_table {
   width: 100%;
 }
+
+#taken_exams {
+  width: 100%;
+  text-align: center;
+}
+
+#user_chart {
+  width: 100%;
+  height: 500px;
+}
+

@@ -41,9 +41,8 @@ class ExamsController < ApplicationController
     params[:tags].split(', ').each do |tag|
       exam.tags << Tag.find_or_create_by_name( name: tag.downcase )
     end
-
-    redirect_to(new_exam_path)
   end
+
 
   def analytic
     @exam = Exam.find(params[:id])
@@ -57,6 +56,7 @@ class ExamsController < ApplicationController
     scores = runs.map{|x| {datetime:x.created_at.to_s[0..18], score:x.score, name:x.user.first}}
     render :json => scores
   end
+
 
   def edit
   end

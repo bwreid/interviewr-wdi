@@ -1,5 +1,5 @@
 Interviewr::Application.routes.draw do
-  root :to => 'home#index'
+ root :to => 'home#index'
   resources :exams do
     member do
       post "submit"
@@ -9,11 +9,13 @@ Interviewr::Application.routes.draw do
     end
   end
 
-
-
+  resources :users do
+    member do
+      get 'scores'
+    end
+  end
 
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
-  resources :users
 end

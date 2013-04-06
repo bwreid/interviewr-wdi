@@ -7,6 +7,7 @@ window.exam_form =
   show_form: (e) ->
     e.preventDefault()
     $('.exam_form_partial').slideDown()
+    $('#exam_button').hide()
   close_form: (e) ->
     e.preventDefault()
     $('.exam_form_partial').slideUp()
