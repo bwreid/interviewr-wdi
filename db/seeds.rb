@@ -8,21 +8,22 @@ User.delete_all
 
 # User :address, :balance, :email, :first, :image, :is_admin, :last, :lat, :lon, :occupation, :password, :password_digest, :phone
 
-User.create(email: 'admin@gmail.com', is_house: true, password: 'a', password_confirmation: 'a')
-u1 = User.create(first: 'Bob', last: 'Bobberson', email:"janesternbach+1@gmail.com", password: 'a', password_confirmation: 'a', phone:"+16463275054")
-u2 = User.create(first: 'Rodolfo', last: 'Klein', password: 'a', password_confirmation: 'a')
-u3 = User.create(:email=>'byingling@gmail.com', :first=>'Brian',:last=>'Yingling',:password=>'a',:password_confirmation=>'a')
-e1 = Exam.create(:name => "Ruby Basics", :fee => true, :cost=>'5.00', :pass_rate => "85%", :creator_id => u1.id)
-e2 = Exam.create(:name => "Computer Science", :fee => false, :pass_rate => "40%", :creator_id => u1.id)
-e3 = Exam.create(:name => "Python", :fee => false, :pass_rate => "30%", :creator_id => u1.id)
-e4 = Exam.create(:name => "Matlab", :fee => true, :cost=>'10.00', :pass_rate => "15%", :creator_id => u1.id)
-u1 = User.create(first: 'Bob', last: 'Bobberson', password: 'a', password_confirmation: 'a', address: '10 E 21st St, New York, NY', email: 'bob@gmail.com')
+admin = User.create(email: 'admin@gmail.com', is_house: true, password: 'a', password_confirmation: 'a')
+u1 = User.create(first: 'Bob', last: 'Bobberson', password: 'a', password_confirmation: 'a')
+u2 = User.create(first: 'Bob', last: 'Bobberson', email:"janesternbach+1@gmail.com", password: 'a', password_confirmation: 'a', phone:"+16463275054")
+u3 = User.create(:first=>'Brian',:last=>'Yingling',:email=>'byingling@gmail.com',:password=>'a',:password_confirmation=>'a')
 
-e1 = Exam.create(:name => "Ruby Basics", :fee => "$5.00", :pass_rate => "85%", :creator_id => u1.id)
-e2 = Exam.create(:name => "Computer Science", :fee => "Free", :pass_rate => "40%", :creator_id => u1.id)
-e3 = Exam.create(:name => "Python", :fee => "Free", :pass_rate => "30%", :creator_id => u1.id)
-e4 = Exam.create(:name => "Matlab", :fee => "$10.00", :pass_rate => "15%", :creator_id => u1.id)
-e5 = Exam.create(:name => "CSS", :fee => "Free", :pass_rate => "80%", :creator_id => u1.id)
+u4 = User.create(first: 'Bob', last: 'Bobberson', password: 'a', password_confirmation: 'a', address: '10 E 21st St, New York, NY', email: 'samdec11+bob@gmail.com', phone: '+13156574130')
+
+u5 = User.create(first: 'Rodolfo', last: 'Klein', password: 'a', password_confirmation: 'a')
+u6 = User.create(:email=>'byingling@gmail.com', :first=>'Brian',:last=>'Yingling',:password=>'a',:password_confirmation=>'a')
+
+
+e1 = Exam.create(:name => "Ruby Basics", :fee => true, :cost=>5.00, :pass_rate => "85", :creator_id => u1.id)
+e2 = Exam.create(:name => "Computer Science", :fee => true,:cost=>3.00, :pass_rate => "40", :creator_id => u1.id)
+e3 = Exam.create(:name => "Python", :fee => true, :cost=>5.00, :pass_rate => "30", :creator_id => u1.id)
+e4 = Exam.create(:name => "Matlab", :fee => true, :cost=>10.00, :pass_rate => "15%", :creator_id => u1.id)
+e5 = Exam.create(:name => "CSS", :fee => false, :pass_rate => "80", :creator_id => u1.id)
 
 # exam 1
 q1 = Question.create(:text => "What is an array used for", :exam_id => e1.id)
@@ -62,4 +63,5 @@ t2 = Tag.create(:name => "Basics")
 t3 = Tag.create(:name => "CS")
 t4 = Tag.create(:name => "NYC")
 t5 = Tag.create(:name => "General Assembly")
+
 

@@ -1,4 +1,19 @@
+
+%h1 Hi.
+
+/ - if @auth.present?
+.row
+  .large-6.columns
+    = text_field_tag :search, nil, :autofocus => true
+  .large-6.columns
+
+
+
+.row.large-6.columns#exams
+  = render :partial => 'search_results'
+.large-6.columns
+
+
 .row
   .small-5.small-centered.columns
     #login
-%h1 Hi.
