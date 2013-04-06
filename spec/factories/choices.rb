@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :choice, class: Choice do
+    text "a"
+    correct false
+  end
   factory :choice_a, class: Choice do
     text "a"
     correct false

@@ -1,0 +1,12 @@
+%h3= "Thank for taking #{@run.exam.name}!"
+
+%p= "Dear #{@user.first},"
+
+%p{ style: 'color:red'}= "Your final score was #{@run.score}%"
+
+%p= "You answered #{@run.right_responses} right and #{@run.wrong_responses} wrong, out of #{@run.exam.questions.length}."
+
+%p Thanks,
+%p Interviewr Team
+
+/ Notifications.exam_taken('x').deliver

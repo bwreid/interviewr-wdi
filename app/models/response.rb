@@ -4,15 +4,16 @@
 #
 #  id          :integer          not null, primary key
 #  answer      :boolean
-#  user_id     :integer
 #  question_id :integer
 #  choice_id   :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  run_id      :integer
 #
 
 class Response < ActiveRecord::Base
-  attr_accessible :answer, :question_id, :run_id
+  attr_accessible :answer, :question_id, :user_id, :run_id, :choice_id
+
   belongs_to :run
   belongs_to :question
   belongs_to :choice

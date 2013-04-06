@@ -2,3 +2,11 @@
 
 @import "custom_settings.scss";
 @import "foundation.scss";
+
+#login {
+  display: none;
+}
+
+span label {
+  display: inline-block;
+}

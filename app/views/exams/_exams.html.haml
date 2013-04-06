@@ -1,0 +1,19 @@
+.row.large-6.columns
+  %table
+    %tr
+      %th
+        %td
+          - @exams.each do |exam|
+            = exam.name
+            = link_to(exam.name, exam, :remote => true, :class => 'button tiny radius secondary')
+          - @questions.each do |question|
+            = question.text
+          - @choices.each do |choice|
+            = choice.text
+            %br
+          - @tags.each do |tag|
+            = tag.name
+.large-6.columns
+
+/ find.User(where).creator_id == user.id
+/ find tests which are free
