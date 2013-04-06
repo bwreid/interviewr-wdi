@@ -18,6 +18,7 @@ class Exam < ActiveRecord::Base
   has_many :runs
   has_and_belongs_to_many :tags
   has_many :questions, :dependent => :destroy
+  has_one :user
   accepts_nested_attributes_for :questions, :reject_if => lambda { |a| a[:text].blank? }, :allow_destroy => true
 
   # calculates the percentage of the number of passing runs for an exam.

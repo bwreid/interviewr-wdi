@@ -8,6 +8,6 @@
   .large-6.columns
     = text_field_tag :search, nil, :autofocus => true
   .large-6.columns
+.row.large-6.columns#exams
+  = render :partial => 'search_results'
 
-#search_results
-  = render partial: 'search_results'

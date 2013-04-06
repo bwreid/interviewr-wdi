@@ -17,13 +17,6 @@ Interviewr::Application.routes.draw do
     end
   end
 
-
-  get '/login' => 'session#new'
-  post '/login' => 'session#create'
-  delete '/login' => 'session#destroy'
-  resources :users
-
-
   resources :questions do
     collection do
       get 'filter/', :action => :filter, :as => :filter

@@ -1,17 +1,18 @@
+/ %table
+/   %tr
+/     %th Exam
+/     %th Fee
+/     %th Pass rate
+/     %th Number of passes
+/     %th Number of fails
+/     %th Owner
+/     - if @exams.present?
+/       - @exams.each do |exam|
+/         %tr
+/           %td= link_to(exam.name, exam, :class => 'button tiny radius secondary')
+/           %td= exam.cost
+/           %td= exam.pass_rate
+/           %td= exam.runs.select{|x| x.passed? == true}.count
+/           %td= exam.runs.select{|x| x.passed? != true}.count
+/           %td= User.find(exam.creator_id).first
 
-.row.large-6.columns
-  %table
-    %tr
-      %th
-        %td
-          - @exams.each do |exam|
-            = exam.name
-            = link_to(exam.name, exam, :class => 'button tiny radius secondary')
-          - @questions.each do |question|
-            = question.text
-          - @choices.each do |choice|
-            = choice.text
-            %br
-          - @tags.each do |tag|
-            = tag.name
-.large-6.columns

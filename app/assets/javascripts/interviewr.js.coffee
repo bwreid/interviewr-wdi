@@ -10,6 +10,8 @@ jQuery ->
     $(this).before($(this).data('fields').replace(regexp, time))
     event.preventDefault()
 
+  $('#accordion').accordion();
+
 window.app =
   ready: ->
     $('#login').on('click', 'a[data-clear-form]', app.clear_form)
@@ -52,6 +54,9 @@ window.app =
       xkey: 'datetime'
       ykeys: ['score']
       labels:['name']
+      hoverCallback:(index, options) ->
+        row = options.data[index]
+        return "#{row.name}: #{row.score}"
       ymin: "auto"
       ymax: "auto"
 
