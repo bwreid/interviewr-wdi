@@ -14,3 +14,4 @@
       %td= exam.runs.select{|x| x.passed? == true}.count
       %td= exam.runs.select{|x| x.passed? != true}.count
       %td= User.find(exam.creator_id).first
+

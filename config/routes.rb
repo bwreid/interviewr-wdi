@@ -9,10 +9,11 @@ Interviewr::Application.routes.draw do
     collection do
       get 'filter/', :action => :filter, :as => :filter
     end
-
     member do
       post "submit"
       post "purchase"
+      get "analytic"
+      get "scores"
     end
   end
 
