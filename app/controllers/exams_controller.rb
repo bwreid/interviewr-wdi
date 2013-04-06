@@ -27,10 +27,10 @@ class ExamsController < ApplicationController
     client.account.sms.messages.create(:from => ENV['TW_NUM'], :to => @auth.phone, :body => body)
   end
 
-  def filter
-    question = question.find.params[:question_id]
-    @questions = @exams.questions
-
+  # def filter
+  #   question = question.find.params[:question_id]
+  #   @questions = @exams.questions
+  # end
 
   def index
     @exams = Exam.all
@@ -69,7 +69,7 @@ class ExamsController < ApplicationController
         @auth.customer_id = customer.id
         @auth.save
       end
-    Stripe::Charge.create(:customer=>@auth.customer_id, :amount=>(exam.cost*100).to_i, :description=>exam.name, :currency=>'usd')
+      Stripe::Charge.create(:customer=>@auth.customer_id, :amount=>(exam.cost*100).to_i, :description=>exam.name, :currency=>'usd')
     rescue Stripe::CardError=>@error
     end
     if @error.nil?
@@ -78,4 +78,3 @@ class ExamsController < ApplicationController
     end
   end
 end
-
