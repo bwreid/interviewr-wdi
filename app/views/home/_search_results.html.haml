@@ -2,13 +2,13 @@
   %tr
     %th
     %th Exam
-    %th Fee
+    %th Cost
     %th Pass rate
     %th Number of passes
     %th Number of fails
     %th Owner
-    - if Exam.present?
-      - @exams = Exam.all
+    - @exams = Exam.all
+    - if @exams.present?
       - @exams.each do |exam|
         %tr
           %td
