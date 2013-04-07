@@ -45,17 +45,14 @@ describe 'Exams' do
       fill_in('search',:with=>exam.name)
       find('.stripe-button-el').click
     end
-    # it 'displays the one click purchase button when customer_id is present', :js=>true do
-    #   visit root_path
-    #   login(user)
-    #   visit root_path
-    #   exam.save
-
-    # end
-
+    it 'displays the one click purchase button when customer_id is present', :js=>true do
+      exam.save
+      user.customer_id = 'test'
+      user.save
+      exam.save
+      login(user)
+      visit root_path
+      page.should have_button('ONE-CLICK Buy for $0.00')
+    end
   end
-
-
-
-
 end
