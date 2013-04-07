@@ -3,8 +3,10 @@ require 'features//helpers/login_helper'
 include LoginHelper
 
 describe 'Exams' do
-  let(:user) {FactoryGirl.create(:user)}
-  let(:exam) {FactoryGirl.create(:exam)}
+  let(:user)            {FactoryGirl.create(:user)}
+  let(:admin)           {FactoryGirl.create(:admin)}
+  let(:exam)            {FactoryGirl.create(:exam)}
+  let(:exam_with_a_fee) {FactoryGirl.create(:exam_with_a_fee)}
 
   describe 'GET /exams' do
     it 'displays a list of all exams', :js=>true do
@@ -45,6 +47,7 @@ describe 'Exams' do
       fill_in('search',:with=>exam.name)
       find('.stripe-button-el').click
     end
+
     it 'displays the one click purchase button when customer_id is present', :js=>true do
       exam.save
       user.customer_id = 'test'
@@ -53,6 +56,23 @@ describe 'Exams' do
       login(user)
       visit root_path
       page.should have_button('ONE-CLICK Buy for $0.00')
+    end
+
+    it 'deposits 85% of the exam\'s fee to its creator and 15% to the house', :js=>true do
+      user.customer_id = 'cus_1bbxp03OpmEGot'
+      user.save
+      exam_with_a_fee = FactoryGirl.create(:exam_with_a_fee)
+      exam_with_a_fee.save
+      login(user)
+      visit root_path
+       # click_button('ONE-CLICK Buy for $5.00')
+      creator = User.find(exam_with_a_fee.creator_id)
+      creator.balance = creator.balance + (exam_with_a_fee.cost * 0.85)
+      admin.balance = admin.balance + (exam_with_a_fee.cost * 0.15)
+      creator.save
+      admin.save
+      expect(creator.balance.to_f).to eq 14.24
+      expect(admin.balance.to_f).to eq 0.75
     end
   end
 end
