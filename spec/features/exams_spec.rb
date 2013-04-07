@@ -1,4 +1,6 @@
 require 'spec_helper'
+require 'features//helpers/login_helper'
+include LoginHelper
 
 describe 'Exams' do
   describe 'GET /exams' do
@@ -10,5 +12,11 @@ describe 'Exams' do
     end
   end
 
+  describe 'POST /exams' do
+    it 'creates a new exam', :js=>true do
+      user = FactoryGirl.create(:user)
+      login(user)
+    end
+  end
 
 end
