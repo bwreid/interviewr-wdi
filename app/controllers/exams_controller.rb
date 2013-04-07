@@ -73,7 +73,7 @@ class ExamsController < ApplicationController
 
   #  purchase an exam
   # Check if customer already has a Stripe account. If so, get stripe customer id.
-  #  Else, create customer_id and Stripe account. Call Stripe customer dialog box
+  #  Else, create customer_id and Stripe account.
   def purchase
     exam = Exam.find(params[:id])
     customer = ''
@@ -99,8 +99,7 @@ class ExamsController < ApplicationController
       creator = User.find(exam.creator_id)
       creator.balance += (exam.cost * 0.85)
       Notifications.purchased(@auth, run)
-      redirect_to exams_path
-
+      redirect_to exam_path(exam)
     end
   end
 end

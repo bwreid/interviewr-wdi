@@ -12,7 +12,7 @@
 #
 
 class Response < ActiveRecord::Base
-  attr_accessible :answer, :question_id, :user_id, :run_id, :choice_id
+  attr_accessible :question_id, :user_id, :run_id, :choice_id, :answer, :default=>false
 
   belongs_to :run
   belongs_to :question

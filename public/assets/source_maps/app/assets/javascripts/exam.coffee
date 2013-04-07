@@ -5,6 +5,6 @@ window.exam =
 
   token_generated: (e, token) ->
     console.log(token)
-    $(this).siblings('form').append("<input type='hidden' name='token' value='#{token.id}'>").submit('Buy Now')
+    $(this).siblings('form').append("<input type='hidden' name='token' value='#{token.id}'>").submit()
 
 $(document).ready(exam.ready)
