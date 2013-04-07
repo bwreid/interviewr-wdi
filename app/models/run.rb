@@ -29,7 +29,6 @@ class Run < ActiveRecord::Base
             boolean_check << false
           end
         end
-
       end
       right_responses += 1 if boolean_check.reduce(:&) == true
     end
