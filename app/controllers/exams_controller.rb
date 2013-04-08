@@ -2,7 +2,6 @@ class ExamsController < ApplicationController
 
   def show
     @exam = Exam.find(params[:id])
-    binding.pry
     responses = @exam.questions.first.responses.select{|x| x.run_id == nil}
     if responses.length == 0
       @exam.make_responses
@@ -40,9 +39,7 @@ class ExamsController < ApplicationController
   def create
     # NEED TO ASSOCIATE CREATOR_ID WITH USER
     exam = Exam.create( params[:exam] )
-    binding.pry
     exam.update_attributes( creator_id: @auth.id )
-    binding.pry
     params[:tags].split(', ').each do |tag|
       exam.tags << Tag.find_or_create_by_name( name: tag.downcase )
     end
