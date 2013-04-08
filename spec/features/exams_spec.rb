@@ -58,14 +58,31 @@ describe 'Exams' do
       page.should have_button('ONE-CLICK Buy for $0.00')
     end
 
+    # it 'sends an email confirming purchase of a chosen exam', :js=>true do
+    #   #
+    #   # In order for this to be tested, the exam_with_a_fee needs to be populated with questions. This
+    #   # should be populated in the exam_factory.rb file.
+    #   #
+    #   # exam_with_a_fee.save
+    #   # user.customer_id = 'cus_1bgi5dhuKrfHul'
+    #   # user.save
+    #   # admin.save
+    #   # login(user)
+    #   # visit root_path
+    #   # click_button('ONE-CLICK Buy for $5.00')
+    # end
+
     it 'deposits 85% of the exam\'s fee to its creator and 15% to the house', :js=>true do
       user.customer_id = 'cus_1bbxp03OpmEGot'
       user.save
+      admin.save
       exam_with_a_fee = FactoryGirl.create(:exam_with_a_fee)
       exam_with_a_fee.save
       login(user)
       visit root_path
        # click_button('ONE-CLICK Buy for $5.00')
+       # This is commented out because customer_id verification is managed by Stripe and putting in
+       # an authorized customer_id from another account won't work
       creator = User.find(exam_with_a_fee.creator_id)
       creator.balance = creator.balance + (exam_with_a_fee.cost * 0.85)
       admin.balance = admin.balance + (exam_with_a_fee.cost * 0.15)

@@ -2,6 +2,7 @@ class ExamsController < ApplicationController
 
   def show
     @exam = Exam.find(params[:id])
+    binding.pry
     responses = @exam.questions.first.responses.select{|x| x.run_id == nil}
     if responses.length == 0
       @exam.make_responses
@@ -94,6 +95,7 @@ class ExamsController < ApplicationController
 
       # add 15% of cost to house
       house = User.where(:is_house=>true).first
+      # binding.pry
       house.balance += (exam.cost * 0.15)
       house.save
 
@@ -101,6 +103,7 @@ class ExamsController < ApplicationController
       creator = User.find(exam.creator_id)
       creator.balance += (exam.cost * 0.85)
       Notifications.purchased(@auth, run)
+      # binding.pry
       redirect_to exam_path(exam)
     end
   end
