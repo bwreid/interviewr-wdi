@@ -89,9 +89,8 @@ class ExamsController < ApplicationController
     end
     if @error.nil?
       # add 15% of cost to house
-      # house = User.where(:is_house=>true).first
-      # binding.pry
-      house = User.first
+      house = User.where(:is_house=>true).first
+      # house = User.whe
       house.balance += (exam.cost * 0.15)
       house.save
       # add 85% of cost to exam's creator
