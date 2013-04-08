@@ -3,12 +3,84 @@
 @import "custom_settings.scss";
 @import "foundation.scss";
 
+// TYPOGRAPHY
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  &.hero {
+    font-size: 4em;
+  }
+}
+
+// $pink: #FF316C;
+// $orange: #FCA011;
+// $yellow: #E3D154;
+// $green: #92C450;
+// $blue: #0BB4CF;
+
+
+// $blue: #00B6CF;
+// $yellow: #FFCC33;
+// $pink: #FF2659;
+// $lightred: #D10031;
+// $darkred: #990024;
+
+// $green: #2A7300;
+// $blue: #000272;
+// $purple: #611580;
+// $yellow: #FFFF0D;
+// $red: #C00003;
+
+// $white: #FFFFED;
+// rgb = 225, 255, 237
+// $red: #FF2C38;
+// rbg = 255, 44, 56
+$orange: #FF9A3A;
+$dark-orange: darken($orange, 20%);
+// rgb = 255, 154, 58
+// $yellow: #FFF040;
+// rgb = 255, 240, 64
+$blue: #67D9FF;
+$dark-blue: darken($blue, 20%);
+// rgb = 103, 217, 255
+
 #login {
   display: none;
 }
 
+#info td:first-child {
+  font-weight: bold;
+}
+
+#info {
+  width: 100%;
+}
+
+#map_canvas {
+  width: 100%;
+  height: 200px;
+}
+
+#my_exams li {
+  list-style: none;
+}
+
+#my_exams a {
+  font-weight: bold;
+}
+
 span label {
   display: inline-block;
+}
+
+
+#questions li{
+  list-style-type: decimal;
+}
+
+#choices li{
+  list-style-type: lower-latin;
+  margin-left: 10px
 }
 
 #score_chart {
@@ -19,3 +91,85 @@ span label {
 #exam_table {
   width: 100%;
 }
+
+#taken_exams {
+  width: 100%;
+  text-align: center;
+}
+
+#user_chart {
+  width: 100%;
+  height: 500px;
+}
+
+.top-bar {
+  margin-bottom: 0px;
+}
+
+#splash {
+  background-image: -webkit-linear-gradient(top right, rgba(255, 255, 255, .7) 0%, $dark-blue 100%), url(test.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  // -webkit-box-shadow: 0px 3px 5px rgba(50, 50, 50, 0.75);
+  // box-shadow: 0px 3px 5px rgba(50, 50, 50, 0.75);
+  height: 400px;
+  width: 100%;
+  color: #222;
+  h1 {
+    color: #222;
+  }
+}
+
+#index_content {
+  padding-top: 50px;
+  background-color: white;
+  #circle {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    background-color: white;
+    position: absolute;
+    top: 400px;
+    left: 670px;
+  }
+  #search_bar {
+    padding-bottom: 50px;
+  }
+  #reset {
+    position: relative;
+    top: -7px;
+    left: -37px;
+    img {
+      height: 43px;
+    }
+  }
+  .exam_info {
+    margin-bottom: 10px;
+    min-height: 200px;
+    a {
+      color: $dark-orange;
+      &:hover {
+        color: darken($blue, 50%);
+      }
+    }
+    p {
+      color: black;
+      margin-bottom: 0px;
+    }
+    .pass_chart {
+      height: 200px;
+      width: 200px;
+    }
+    &:hover {
+      background: #eee;
+    }
+  }
+}
+
+// #footer {
+//   width: 100%;
+//   height: 100px;
+//   background-image: -webkit-linear-gradient(top, rgba(209,0,49, .7) 0%, rgba(153,0,36, 1) 100%), url(paper.png);
+
+// }
+

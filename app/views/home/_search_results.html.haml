@@ -1,0 +1,44 @@
+/ %table
+/   %tr
+/     %th Exam
+/     %th Fee
+/     %th Pass rate
+/     %th Number of passes
+/     %th Number of fails
+/     %th Owner
+/     - if @exams.present?
+/       - @exams.each do |exam|
+/         %tr
+/           %td= link_to(exam.name, exam, :class => 'button tiny radius secondary')
+/           %td= exam.cost
+/           %td= exam.pass_rate
+/           %td= exam.runs.select{|x| x.passed? == true}.count
+/           %td= exam.runs.select{|x| x.passed? != true}.count
+/           %td= User.find(exam.creator_id).first
+
+- if @exams.present?
+  .row
+    -@exams.each do |exam|
+      .small-6.columns.exam_info
+        .row
+          .small-6.columns
+            %h3= link_to(exam.name, exam)
+            %p
+              - if @auth.present? && @auth.customer_id.nil?
+                %script{:src => "https://checkout.stripe.com/v2/checkout.js",
+                        :class => "stripe-button",
+                        :'data-label' => exam.cost,
+                        :'data-amount' => exam.cost * 100,
+                        :'data-key' => Rails.configuration.stripe[:publishable_key]}
+                = form_tag purchase_exam_path(exam.id) do end
+              - else
+                = form_tag purchase_exam_path(exam.id) do
+                  = submit_tag exam.cost, :class => "button radius small"
+            %p= "Pass Rate: #{exam.pass_rate}%"
+            %p= "Passes: #{exam.runs.select{|x| x.passed? == true}.count}"
+            %p= "Fails: #{exam.runs.select{|x| x.passed? != true}.count}"
+            %p= "Creator: #{User.find(exam.creator_id).first}"
+          .small-6.columns
+            .pass_chart{:data => {passes:"#{exam.runs.select{|x| x.passed? == true}.count}", fails:"#{exam.runs.select{|x| x.passed? == false}.count}"}}
+
+

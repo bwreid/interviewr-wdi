@@ -22,11 +22,14 @@ class Run < ActiveRecord::Base
     self.exam.questions.each do |question|
       boolean_check = []
       question.choices.each do |choice|
-        if choice.correct == choice.responses.where( run_id: self.id ).first.answer
-          boolean_check << true
-        else
-          boolean_check << false
+        if choice.responses.present?
+          if choice.correct == choice.responses.where( run_id: self.id ).first.answer
+            boolean_check << true
+          else
+            boolean_check << false
+          end
         end
+
       end
       right_responses += 1 if boolean_check.reduce(:&) == true
     end
@@ -50,10 +53,10 @@ class Run < ActiveRecord::Base
   end
 
   def score
-    ((self.right_responses.to_f / self.exam.questions.length.to_f)*100).to_i
+    ((self.right_responses.to_f / self.exam.questions.length.to_f)*100).to_i if self.exam.questions.length > 0
   end
 
   def passed?
-    self.score >= self.exam.pass_rate ? true : false
+    (self.score >= self.exam.pass_rate ? true : false) if self.score.present?
   end
 end

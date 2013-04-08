@@ -1,0 +1,15 @@
+
+.large-10.columns.large-centered
+  %h3 My Exams
+  #accordion
+    - Exam.all.each do |exam|
+      %h1= exam.name
+      %div
+        -exam.questions.each do |question|
+          #questions
+            %ol
+              %li= "#{question.text}"
+          %ul
+            #choices
+              - question.choices.each do |choice|
+                %li= "#{choice.text}"

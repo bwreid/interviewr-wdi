@@ -1,4 +1,37 @@
 .row
   .small-5.small-centered.columns
     #login
-%h1 Hi.
+
+
+#splash
+  .row
+    .large-6.columns
+      %h1.hero{ style: 'padding-top: 50px;' } Welcome.
+      %h3 Pour-over etsy terry richardson, cray sustainable cosby sweater hella leggings.
+
+
+#index_content
+  #circle
+  .row#search_bar
+    .large-8.large-offset-2.columns
+      = text_field_tag :search, nil
+    .large-1.columns
+      #reset= link_to(image_tag("reset.png"), root_path)
+    .large-1.columns
+
+  .row
+    .large-12.large-centered.columns#exams
+      = render :partial => 'search_results'
+%footer.row
+  .large-12.columns
+    %hr/
+    .row
+      .large-6.columns
+        %h6 © BEST TEAM EVER. BAM.
+      .large-6.columns
+
+
+
+
+
+
