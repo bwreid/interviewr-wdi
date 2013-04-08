@@ -4,7 +4,7 @@ Interviewr::Application.routes.draw do
 
   get '/search' => 'home#search'
 
- root :to => 'home#index'
+  root :to => 'home#index'
   resources :exams do
     collection do
       get 'filter/', :action => :filter, :as => :filter

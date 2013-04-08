@@ -26,6 +26,7 @@ class ExamsController < ApplicationController
     client.account.sms.messages.create(:from => ENV['TW_NUM'], :to => @auth.phone, :body => body)
   end
 
+
   def index
     @exams = Exam.all
   end
@@ -33,6 +34,7 @@ class ExamsController < ApplicationController
   def new
     @exam = Exam.new
   end
+
 
   def create
     # NEED TO ASSOCIATE CREATOR_ID WITH USER
@@ -47,6 +49,7 @@ class ExamsController < ApplicationController
   def edit
   end
 
+
   def analytic
     @exam = Exam.find(params[:id])
     @users = Run.where(:exam_id => @exam.id).map{|x| x.user}.uniq
@@ -59,11 +62,14 @@ class ExamsController < ApplicationController
     render :json => scores
   end
 
+
   def update
   end
 
+
   def destroy
   end
+
 
   #  purchase an exam
   # Check if customer already has a Stripe account. If so, get stripe customer id.
@@ -94,7 +100,8 @@ class ExamsController < ApplicationController
       creator = User.find(exam.creator_id)
       creator.balance += (exam.cost * 0.85)
       Notifications.purchased(@auth, run)
-    redirect_to exams_path
+      redirect_to exams_path
+
     end
   end
 end

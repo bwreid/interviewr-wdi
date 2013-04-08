@@ -6,19 +6,16 @@ Tag.delete_all
 Exam.delete_all
 User.delete_all
 
-# User :address, :balance, :email, :first, :image, :is_admin, :last, :lat, :lon, :occupation, :password, :password_digest, :phone
+#users-- we each now have a user that can log in at successfully take tests
+admin = User.create(email: 'admin@gmail.com', is_house: true, password: 'a', password_confirmation: 'a')
+u1 = User.create(first: 'Jane', last: 'Sternbach', email:"janesternbach+1@gmail.com", password: 'a', password_confirmation: 'a', phone:"+16463275054")
+u3 = User.create(:first=>'Brian',:last=>'Yingling',:email=>'byingling@gmail.com',:password=>'a',:password_confirmation=>'a', :phone => "+18622230085")
+u4 = User.create(first:"Sean", last:"Marzug-McCarthy", email:"samdec11@gmail.com", phone:"+13156574130", password:"a", password_confirmation:"a")
+u5 = User.create(first:"Shefali", last:"Friesen", email:"musictechgirl@gmail.com", phone:"+19177433254", password:"a", password_confirmation:"a")
+u6 = User.create(first:"Bryan", last:"Reid", email:"holla@bryanwreid.com", phone:"+16507593446", password:"a", password_confirmation:"a")
+u6 = User.create(first:"Jeffrey", last:"Katz", email:"jeffreyerickatz@gmail.com", phone:"+12154997415", password:"a", password_confirmation:"a")
 
-admin = User.create(email: 'admin@gmail.com', is_house: true, password: 'a', password_confirmation: 'a',:phone=>'12345678910')
-u1 = User.create(first: 'Bob', last: 'Bobberson', password: 'a', password_confirmation: 'a')
-u2 = User.create(first: 'Bob', last: 'Bobberson', email:"janesternbach+1@gmail.com", password: 'a', password_confirmation: 'a', phone:"+16463275054")
-u3 = User.create(:first=>'Brian',:last=>'Yingling',:email=>'byingling@gmail.com',:password=>'a',:password_confirmation=>'a',:phone=>'12345678910')
-
-u4 = User.create(first: 'Bob', last: 'Bobberson', password: 'a', password_confirmation: 'a', address: '10 E 21st St, New York, NY', email: 'samdec11+bob@gmail.com', phone: '+13156574130')
-
-u5 = User.create(first: 'Rodolfo', last: 'Klein', password: 'a', password_confirmation: 'a')
-u6 = User.create(:email=>'byingling@gmail.com', :first=>'Brian',:last=>'Yingling',:password=>'a',:password_confirmation=>'a', :address=>'2 Orston Rd, Parsippany, NJ 07054')
-
-
+#exams
 e1 = Exam.create(:name => "Ruby Basics", :fee => true, :cost=>5.00, :pass_rate => "85", :creator_id => u1.id)
 e2 = Exam.create(:name => "Computer Science", :fee => true,:cost=>3.00, :pass_rate => "40", :creator_id => u1.id)
 e3 = Exam.create(:name => "Python", :fee => true, :cost=>5.00, :pass_rate => "30", :creator_id => u1.id)
