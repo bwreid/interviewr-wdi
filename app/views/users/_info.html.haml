@@ -30,5 +30,5 @@
   .small-12.columns
     - if @user.address.present?
       #map_canvas
-        %script
-          = "gmap.display_map(#{@user.lat}, #{@user.lon}, 13);"
+      %script
+        = "gmap.display_map(#{@user.lat}, #{@user.lon}, 12);"

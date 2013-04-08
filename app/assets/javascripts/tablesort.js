@@ -9,14 +9,17 @@ jQuery.fn.dataTableExt.oSort['string-case-desc'] = function(x,y) {
 
 $(document).ready(function() {
   /* Build the DataTable with third column using our custom sort functions */
-  $('#exam_table').dataTable( {
-    "aaSorting": [ [0,'asc'], [1,'asc'] ],
-    "aoColumns": [
-      null,
-      null,
-      { "sType": 'string-case' },
-      null,
-      null
-    ]
-  } );
+  if($("#exam_table").length != 0)
+  {
+    $('#exam_table').dataTable( {
+      "aaSorting": [ [0,'asc'], [1,'asc'] ],
+      "aoColumns": [
+        null,
+        null,
+        { "sType": 'string-case' },
+        null,
+        null
+      ]
+    } );
+  }
 } );
