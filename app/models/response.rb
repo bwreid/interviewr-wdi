@@ -3,12 +3,12 @@
 # Table name: responses
 #
 #  id          :integer          not null, primary key
-#  answer      :boolean
 #  question_id :integer
 #  choice_id   :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  run_id      :integer
+#  answer      :boolean          default(FALSE)
 #
 
 class Response < ActiveRecord::Base
