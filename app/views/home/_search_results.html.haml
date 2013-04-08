@@ -14,7 +14,7 @@
           %td
             - if @auth.nil?
               = link_to "Register Before You Purchase", new_user_path, :class=>'button tiny radius', :remote=>true
-            - elsif @auth.customer_id.present?
+            - elsif @auth.customer_id.present? && ((exam.cost * 100) > 50 )
               = form_tag purchase_exam_path(exam) do
                 = submit_tag "ONE-CLICK Buy for #{number_to_currency(exam.cost)}", :class=>'button tiny radius alert'
             - else
