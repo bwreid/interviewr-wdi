@@ -55,6 +55,7 @@ window.app =
       xkey: 'datetime'
       ykeys: ['score']
       labels:['name']
+      colors: ["#67D9FF", "#FF9A3A"]
       hoverCallback:(index, options) ->
         row = options.data[index]
         return "#{row.name}: #{row.score}"
@@ -85,6 +86,7 @@ window.app =
       xkey: 'datetime'
       ykeys: ['score']
       labels: ['exam_name']
+      barColors: ["#FF9A3A"]
       hoverCallback:(index, options) ->
         row = options.data[index]
         return "#{row.exam_name}: #{row.score}"

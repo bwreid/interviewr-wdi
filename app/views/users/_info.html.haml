@@ -1,10 +1,12 @@
 .row
   .small-12.columns
     %h1= "#{@user.first}'s Profile"
+    - if @user = @auth
+      = link_to 'Edit Profile', edit_user_path, :remote => true, :class => 'button small'
 .row
   .small-3.columns
     = image_tag @user.image.url
-  .small-9.columns
+  .small-4.columns
     %table#info
       %tr
         %td Name
@@ -24,10 +26,7 @@
       %tr
         %td Balance
         %td= number_to_currency(@user.balance)
-    - if @user = @auth
-      = link_to 'Edit Profile', edit_user_path, :remote => true, :class => 'button small'
-.row
-  .small-12.columns
+  .small-5.columns
     - if @user.address.present?
       #map_canvas
         %script
