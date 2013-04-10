@@ -49,18 +49,21 @@ window.app =
   show_chart: (message)->
     app.mess = message
     console.log(message)
-    new Morris.Line
+    new Morris.Bar
       element: "score_chart"
       data: app.mess
       xkey: 'datetime'
       ykeys: ['score']
       labels:['name']
-      colors: ["#67D9FF", "#FF9A3A"]
+      lineColors: ["#67D9FF"]
       hoverCallback:(index, options) ->
         row = options.data[index]
         return "#{row.name}: #{row.score}"
       ymin: "auto"
       ymax: "auto"
+      xmin: "auto"
+      xmax: "auto"
+
 
   clear_longform: (e) ->
     e.preventDefault()

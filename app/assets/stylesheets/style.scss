@@ -167,10 +167,63 @@ span label {
   }
 }
 
-// #footer {
-//   width: 100%;
-//   height: 100px;
-//   background-image: -webkit-linear-gradient(top, rgba(209,0,49, .7) 0%, rgba(153,0,36, 1) 100%), url(paper.png);
+#user_page {
+  // background-image: -webkit-linear-gradient(top, $orange 0%, $dark-blue 100%), url(natural_paper.jpg);
+  background: url("/assets/math.png");
+  #up {
+    background: white;
+  }
+}
 
-// }
+#exam_show {
+  h3 {
+    color: darken($blue, 30%);
+    font-size: 50px;
+    font-weight: 400;
+  }
+  .question {
+    margin: 30px;
+    padding: 20px 0px 20px 30px;
+    p {
+      font-size: 30px;
+    }
+    p, span {
+      font-family: 'Lato', sans-serf;
+      font-weight: 300;
+    }
+  }
+
+  .question:nth-child(even) {
+    background: $blue;
+
+  }
+  .question:nth-child(odd) {
+    background: $orange;
+  }
+  #submit {
+    text-align: center;
+  }
+  .responses {
+    padding-left: 40px;
+  }
+}
+
+.hide {
+  display: hidden;
+}
+
+#analytic {
+  background: url("/assets/math.png");
+  height: 800px;
+  #an {
+    background: white;
+    height: 800px;
+  }
+  h3 {
+    font-size: 50px;
+    color: darken($blue, 30%);
+  }
+}
+
+
 

@@ -81,7 +81,6 @@ class ExamsController < ApplicationController
         customer = Stripe::Customer.create(:email=>@auth.email,:card=>params[:token])
         @auth.customer_id = customer.id
         @auth.save
-        binding.pry
       end
       Stripe::Charge.create(:customer=>@auth.customer_id, :amount=>(exam.cost*100).to_i, :description=>exam.name, :currency=>'usd')
 
@@ -99,7 +98,8 @@ class ExamsController < ApplicationController
       creator.save
       Notifications.purchased(@auth, exam).deliver
       # binding.pry
-      redirect_to(exam_path(exam.id))
+
     end
+    redirect_to(exam_path(exam.id))
   end
 end

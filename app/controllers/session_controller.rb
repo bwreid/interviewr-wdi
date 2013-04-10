@@ -11,6 +11,7 @@ class SessionController < ApplicationController
       session[:user_id] = nil
     end
     authentication
+    @exams = Exam.all
   end
 
   def destroy

@@ -2,6 +2,7 @@
   $('#login').slideUp();
   window.setTimeout(app.clear_wait, 1000);
   $('nav').empty().append('<%=j render :partial => 'layouts/nav' %>');
+  $("#exams").empty().append('<%=j render :partial => 'home/search_results' %>')
 <% else %>
   $('#login').effect('shake');
 <% end %>

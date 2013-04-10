@@ -1,31 +1,49 @@
-#user_info{:'data-user_id' => @user.id}
-  = render 'info'
-.row
-  .small-12.columns
-    %h3 My Exams
-    %ul#my_exams
-      - @user.my_exams.each do |exam|
-        %li
-          = link_to exam.name, exam
-          = " - "
-          = link_to 'Analytics', analytic_exam_path(exam)
-.row
-  .small-12.columns
-    %h3 Exams Taken
-    %table#taken_exams
-      %tr
-        %th Name
-        %th Date
-        %th Score
-        %th # Correct
-        %th # Incorrect
-      - @user.runs.each do |run|
-        %tr
-          %td= link_to run.exam.name, run.exam
-          %td= run.created_at.strftime('%d/%m/%Y')
-          %td= run.score
-          %td= run.right_responses
-          %td= run.wrong_responses
-    #user_chart
-#edit_user.reveal-modal
-  %a.close-reveal-modal ×
+#user_page
+  .row#up
+    .small-12.columns
+      #user_info{:'data-user_id' => @user.id}
+        = render 'info'
+      .row
+        .small-12.columns
+          %hr
+
+      .row
+        .small-12.columns
+          %h3 My Exams
+          %ul#my_exams
+            - @user.my_exams.each do |exam|
+              %li
+                = link_to exam.name, exam
+                = " - "
+                = link_to 'Analytics', analytic_exam_path(exam)
+      .row
+        .small-12.columns
+          %hr
+      .row
+        .small-12.columns
+          %h3 Exams Taken
+          %table#taken_exams
+            %tr
+              %th Name
+              %th Date
+              %th Score
+              %th # Correct
+              %th # Incorrect
+            - @user.runs.each do |run|
+              %tr
+                %td
+                  %strong= run.exam.name
+                %td= run.created_at.strftime('%d/%m/%Y')
+                %td= run.score
+                %td= run.right_responses
+                %td= run.wrong_responses
+          #user_chart
+    %footer.row
+      .large-12.columns
+        %hr/
+        .row
+          .large-6.columns
+            %h6 © BEST TEAM EVER. BAM.
+          .large-6.columns
+      #edit_user.reveal-modal
+        %a.close-reveal-modal ×
