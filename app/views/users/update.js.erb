@@ -1,10 +1,12 @@
 <% if @user.valid? %>
+  <% @user.update_attributes(params[:user]) %>
   console.log('<%= @user.first %>');
   console.log('<%= @user.lat %>');
   console.log('<%= @user.lon %>');
   $('#edit_user').foundation('reveal', 'close');
   $('#user_info').empty().append('<%=j render :partial => 'users/info' %>');
-  gmap.display_map('<%= @user.lat %>', '<%= @user.lon %>', 12);
+
+  gmap.display_map(<%= @user.lat %>, <%= @user.lon %>, 12);
 <% else %>
   $('#edit_user').empty().append('<%=j render :partial => 'users/longform' %>');
 <% end %>

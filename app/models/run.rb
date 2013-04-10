@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer
-#  count      :integer
+#  count      :integer          default(0)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  exam_id    :integer
@@ -29,7 +29,6 @@ class Run < ActiveRecord::Base
             boolean_check << false
           end
         end
-
       end
       right_responses += 1 if boolean_check.reduce(:&) == true
     end

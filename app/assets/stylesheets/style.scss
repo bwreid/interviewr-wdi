@@ -32,7 +32,6 @@ span label {
   display: inline-block;
 }
 
-
 #questions li{
   list-style-type: decimal;
 }
@@ -42,15 +41,15 @@ span label {
   margin-left: 10px
 }
 
-// .ui-accordion-content {
-//   border: none;
-//   background: none;
-// }
+.ui-accordion-content {
+ border: none;
+ background: none;
+}
 
-// .ui-accordion-header{
-//   border: none;
-//   background: none;
-// }
+.ui-accordion-header{
+  border: none;
+  background: none;
+}
 
 
 #score_chart {

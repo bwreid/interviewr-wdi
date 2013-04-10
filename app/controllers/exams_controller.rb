@@ -39,7 +39,9 @@ class ExamsController < ApplicationController
   def create
     # NEED TO ASSOCIATE CREATOR_ID WITH USER
     exam = Exam.create( params[:exam] )
+    binding.pry
     exam.update_attributes( creator_id: @auth.id )
+    binding.pry
     params[:tags].split(', ').each do |tag|
       exam.tags << Tag.find_or_create_by_name( name: tag.downcase )
     end
@@ -73,9 +75,9 @@ class ExamsController < ApplicationController
 
   #  purchase an exam
   # Check if customer already has a Stripe account. If so, get stripe customer id.
-  #  Else, create customer_id and Stripe account. Call Stripe customer dialog box
+  #  Else, create customer_id and Stripe account.
   def purchase
-    exam = Exam.find(params[:id])
+    @exam = Exam.find(params[:id])
     customer = ''
     begin
       if @auth.customer_id.nil?
@@ -83,25 +85,25 @@ class ExamsController < ApplicationController
         @auth.customer_id = customer.id
         @auth.save
       end
-      Stripe::Charge.create(:customer=>@auth.customer_id, :amount=>(exam.cost*100).to_i, :description=>exam.name, :currency=>'usd')
+      Stripe::Charge.create(:customer=>@auth.customer_id, :amount=>(@exam.cost*100).to_i, :description=>@exam.name, :currency=>'usd')
     rescue Stripe::CardError=>@error
     end
     if @error.nil?
-      run = Run.create(:exam_id=>exam.id, :user_id=>@auth.id)
+      run = Run.create(:exam_id=>@exam.id, :user_id=>@auth.id)
       @auth.runs << run
 
       # add 15% of cost to house
       house = User.where(:is_house=>true).first
-      house.balance += (exam.cost * 0.15)
+      # binding.pry
+      house.balance += (@exam.cost * 0.15)
       house.save
 
       # add 85% of cost to exam's creator
-      binding.pry
-      creator = User.find(exam.creator_id)
-      creator.balance += (exam.cost * 0.85)
+      creator = User.find(@exam.creator_id)
+      creator.balance += (@exam.cost * 0.85)
       Notifications.purchased(@auth, run)
-      redirect_to exams_path
-
+      # redirect_to exam_path(exam)
+      redirect_to exam_path(@exam)
     end
   end
 end
