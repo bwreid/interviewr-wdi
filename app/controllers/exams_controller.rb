@@ -75,6 +75,7 @@ class ExamsController < ApplicationController
   # Check if customer already has a Stripe account. If so, get stripe customer id.
   #  Else, create customer_id and Stripe account. Call Stripe customer dialog box
   def purchase
+    #some comments so i can commit
     exam = Exam.find(params[:id])
     begin
       if @auth.customer_id.nil?
