@@ -75,41 +75,5 @@ class ExamsController < ApplicationController
   # Check if customer already has a Stripe account. If so, get stripe customer id.
   #  Else, create customer_id and Stripe account.
   def purchase
-    exam = Exam.find(params[:id])
-    begin
-      if @auth.customer_id.nil?
-        customer = Stripe::Customer.create(:email=>@auth.email,:card=>params[:token])
-        @auth.customer_id = customer.id
-        @auth.save
-      end
-      Stripe::Charge.create(:customer=>@auth.customer_id, :amount=>(exam.cost*100).to_i, :description=>exam.name, :currency=>'usd')
-
-    rescue Stripe::CardError=>@error
-    end
-    if @error.nil?
-      # add 15% of cost to house
-      house = User.where(:is_house=>true).first
-<<<<<<< HEAD
-      # house = User.whe
-=======
-      # binding.pry
->>>>>>> 208164b0af844abb66bcf4507f4b92b9264c4ed9
-      house.balance += (exam.cost * 0.15)
-      house.save
-      # add 85% of cost to exam's creator
-      creator = User.find(exam.creator_id)
-      creator.balance += (exam.cost * 0.85)
-<<<<<<< HEAD
-      creator.save
-      Notifications.purchased(@auth, exam).deliver
-      # binding.pry
-
-=======
-      Notifications.purchased(@auth, run)
-      # binding.pry
-      redirect_to exam_path(exam)
->>>>>>> 208164b0af844abb66bcf4507f4b92b9264c4ed9
-    end
-    redirect_to(exam_path(exam.id))
   end
 end

@@ -21,16 +21,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-<<<<<<< HEAD
     @user.update_attributes(params[:user])
     redirect_to(user_path(@user))
-=======
-    if @user.update_attributes(params[:user])
-      @user
-    else
-      nil
-    end
->>>>>>> 208164b0af844abb66bcf4507f4b92b9264c4ed9
   end
 
   def scores
