@@ -6,7 +6,7 @@
       %td
         - if @auth.customer_id.present?
           = form_tag purchase_exam_path(exam) do
-            = submit_tag nil, :class=>'button tiny radius alert'
+            = submit_tag "Buy for #{number_to_currency(exam.cost)}", :class=>'button tiny radius alert'
         - else
           %script{:src => "https://checkout.stripe.com/v2/checkout.js",
             :class => "stripe-button",

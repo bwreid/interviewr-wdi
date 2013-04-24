@@ -74,7 +74,6 @@ span label {
   display: inline-block;
 }
 
-
 #questions li{
   list-style-type: decimal;
 }
@@ -84,6 +83,20 @@ span label {
   margin-left: 10px
 }
 
+<<<<<<< HEAD
+=======
+.ui-accordion-content {
+ border: none;
+ background: none;
+}
+
+.ui-accordion-header{
+  border: none;
+  background: none;
+}
+
+
+>>>>>>> 208164b0af844abb66bcf4507f4b92b9264c4ed9
 #score_chart {
   width: 100%;
   height: 300px;

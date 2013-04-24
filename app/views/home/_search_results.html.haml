@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 / %table
 /   %tr
 /     %th Exam
@@ -44,4 +45,39 @@
           .small-6.columns
             .pass_chart{:data => {passes:"#{exam.runs.select{|x| x.passed? == true}.count}", fails:"#{exam.runs.select{|x| x.passed? == false}.count}"}}
 
+=======
+%table
+  %tr
+    %th
+    %th Exam
+    %th Cost
+    %th Pass rate
+    %th Number of passes
+    %th Number of fails
+    %th Owner
+    - @exams = Exam.all
+    - if @exams.present?
+      - @exams.each do |exam|
+        %tr
+          %td
+            - if @auth.nil?
+              = link_to "Register Before You Purchase", new_user_path, :class=>'button tiny radius', :remote=>true
+            - elsif @auth.customer_id.present? && ((exam.cost * 100) > 50 )
+              = form_tag purchase_exam_path(exam) do
+                = submit_tag "ONE-CLICK Buy for #{number_to_currency(exam.cost)}", :class=>'button tiny radius alert'
+            - else
+              %script{:src => "https://checkout.stripe.com/v2/checkout.js",
+                :class => "stripe-button",
+                :'data-label' => exam.name,
+                :'data-amount' => (exam.cost * 100).to_i,
+                :'data-key' => Rails.configuration.stripe[:publishable_key],
+                :'id' => "#{exam.id}"}
+              = form_tag purchase_exam_path(exam), :remote=>true do end
+          %td= exam.name
+          %td= number_to_currency(exam.cost)
+          %td= exam.pass_rate
+          / %td= exam.runs.select{|x| x.passed? == true}.count if exam.runs.present?
+          / %td= exam.runs.select{|x| x.passed? != true}.count if exam.runs.present?
+          / %td= User.find(exam.creator_id).first
+>>>>>>> 208164b0af844abb66bcf4507f4b92b9264c4ed9
 

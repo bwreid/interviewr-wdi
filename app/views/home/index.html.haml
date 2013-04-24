@@ -1,6 +1,7 @@
 .row
   .small-5.small-centered.columns
     #login
+<<<<<<< HEAD
 
 
 #splash
@@ -29,3 +30,18 @@
 
 
 
+=======
+#container
+  .row
+    .small-5.small-centered.columns
+      #login
+  %h1 Hi.
+  .search
+    .row
+      .large-6.columns
+        = text_field_tag :search, nil, :autofocus => true
+      .large-6.columns
+    .row.large-6.columns#exams
+      = render :partial => 'search_results'
+    .large-6.columns
+>>>>>>> 208164b0af844abb66bcf4507f4b92b9264c4ed9
