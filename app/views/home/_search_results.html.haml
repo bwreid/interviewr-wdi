@@ -27,16 +27,17 @@
             -else
               %h3= exam.name
               %p
-                - if @auth.present? && @auth.customer_id.nil?
-                  %script{:src => "https://checkout.stripe.com/v2/checkout.js",
-                          :class => "stripe-button",
-                          :'data-label' => number_to_currency(exam.cost),
-                          :'data-amount' => exam.cost * 100,
-                          :'data-key' => Rails.configuration.stripe[:publishable_key]}
-                  = form_tag purchase_exam_path(exam.id) do end
-                - else
-                  = form_tag purchase_exam_path(exam.id) do
-                    = submit_tag (number_to_currency(exam.cost)), :class => "button radius small"
+                - if @auth.present?
+                  - if @auth.customer_id.nil?
+                    %script{:src => "https://checkout.stripe.com/v2/checkout.js",
+                            :class => "stripe-button",
+                            :'data-label' => number_to_currency(exam.cost),
+                            :'data-amount' => exam.cost * 100,
+                            :'data-key' => Rails.configuration.stripe[:publishable_key]}
+                    = form_tag purchase_exam_path(exam.id) do end
+                  - else
+                    = form_tag purchase_exam_path(exam.id) do
+                      = submit_tag (number_to_currency(exam.cost)), :class => "button radius small"
             %p= "Pass Rate: #{exam.pass_rate}%"
             %p= "Passes: #{exam.runs.select{|x| x.passed? == true}.count}"
             %p= "Fails: #{exam.runs.select{|x| x.passed? != true}.count}"
