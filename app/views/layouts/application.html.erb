@@ -6,6 +6,7 @@
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE']}&sensor=false" %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'pencil.ico' %>
 </head>
 <body>
   <nav class="top-bar"><%= render 'layouts/nav' %></nav>
